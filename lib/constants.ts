@@ -1,6 +1,6 @@
 export const SITE = {
-  name: "Órbita",
-  title: "Órbita — Estudio creativo",
+  name: "AXN Labs",
+  title: "AXN Labs - Estudio creativo y digital",
   description: "Diseñamos lo que viene. Estudio creativo independiente.",
   email: "hola@orbita.studio",
   location: "Estudio independiente · Santiago, Chile",

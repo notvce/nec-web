@@ -7,6 +7,11 @@ import "@/styles/globals.css";
 export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
+  applicationName: SITE.name,
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
