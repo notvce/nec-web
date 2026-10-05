@@ -9,6 +9,7 @@ import { TeamAvatar } from "@/components/home/team-avatar";
 import { revealWithoutMotion } from "@/lib/animations/reveal-without-motion";
 import { CAROUSEL_INTERVAL_MS, HERO_IMAGES, SITE } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+import { scheduleIdleTask } from "@/lib/utils/schedule-idle";
 
 export function HomeClient() {
   const root = useRef<HTMLElement>(null);
@@ -59,7 +60,7 @@ export function HomeClient() {
   useEffect(() => {
     if (reducedMotion) return;
 
-    const id = window.requestIdleCallback(() => {
+    return scheduleIdleTask(() => {
       HERO_IMAGES.slice(1).forEach((src) => {
         const link = document.createElement("link");
         link.rel = "prefetch";
@@ -68,8 +69,6 @@ export function HomeClient() {
         document.head.appendChild(link);
       });
     });
-
-    return () => window.cancelIdleCallback(id);
   }, [reducedMotion]);
 
   return (
