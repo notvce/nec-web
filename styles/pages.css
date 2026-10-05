@@ -1,0 +1,13 @@
+.sub-page { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+.sub-page h1 { margin: 0 0 1rem; font-size: clamp(48px, 8vw, 96px); font-weight: 700; letter-spacing: -.06em; color: var(--paper); }
+.sub-page > p { margin: 0 0 2.5rem; max-width: 32ch; font-size: 15px; line-height: 1.6; color: var(--muted); }
+.sub-page-back { font-size: 13px; color: #c4c5c3; border-bottom: 1px solid #555957; padding-bottom: 6px; transition: color .2s ease; }
+.sub-page-back:hover, .sub-page-back:focus-visible { color: var(--gold); outline: none; }
+
+.contacto-area { width: min(100%, 420px); margin: 0 0 2.5rem; padding: 2rem 1.75rem; border: 1px solid rgba(255,255,255,.08); background: rgba(26,27,27,.72); text-align: center; }
+.contacto-email { display: inline-block; margin-bottom: .75rem; font-size: clamp(18px, 3vw, 24px); font-weight: 600; color: var(--paper); border-bottom: 1px solid #555957; padding-bottom: 8px; transition: color .25s ease; }
+.contacto-email:hover, .contacto-email:focus-visible { color: var(--gold); outline: none; }
+.contacto-meta { margin: 0 0 1.5rem; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.contacto-cta { display: inline-block; padding: 12px 17px; background: #1a1b1b; border: 1px solid rgba(255,255,255,.06); min-width: 140px; font-size: 13px; text-align: center; transition: border-color .2s ease, color .2s ease; }
+.contacto-cta span { margin-left: 10px; color: var(--accent); }
+.contacto-cta:hover, .contacto-cta:focus-visible { color: var(--gold); border-color: rgba(212,168,83,.35); outline: none; }
