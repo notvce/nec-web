@@ -18,14 +18,14 @@
 .start-link span { margin-left: 10px; color: var(--accent); }
 .hero { position: absolute; inset: 74px 0 90px; display: grid; place-items: center; isolation: isolate; }
 .hero-project-anchor { position: absolute; width: 1px; height: 1px; }
-.hero-title { position: relative; top: -.8vh; z-index: 2; width: 100%; margin: 0; text-align: center; font-size: clamp(66px, 8.7vw, 146px); font-weight: 700; letter-spacing: -.085em; line-height: .9; white-space: nowrap; opacity: 0; mix-blend-mode: normal; }
+.hero-title { position: relative; top: -.8vh; z-index: 1; width: 100%; margin: 0; text-align: center; font-size: clamp(66px, 8.7vw, 146px); font-weight: 700; letter-spacing: -.085em; line-height: .9; white-space: nowrap; opacity: 0; mix-blend-mode: normal; }
 .hero-word { cursor: pointer; transition: color .25s ease; }
 .hero-word--imaginamos { transform: translateX(-.02em); display: inline-block; }
 .hero-word--futuros { color: var(--paper); display: inline-block; }
 .hero-word:hover { color: var(--gold); }
 .hero-word:focus-visible { color: var(--gold); outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
 .hero-word:active { color: #b8923f; }
-.carousel-controls { position: absolute; z-index: 4; left: 50%; bottom: 18px; display: flex; align-items: center; gap: 12px; transform: translateX(-50%); }
+.carousel-controls { position: absolute; z-index: 1; left: 50%; bottom: 18px; display: flex; align-items: center; gap: 12px; transform: translateX(-50%); }
 .carousel-dot {
   position: relative;
   box-sizing: border-box;
@@ -131,9 +131,21 @@
     position: fixed;
     inset: 0;
     background: var(--ink);
+    opacity: 1;
     z-index: 1000;
     padding: 90px clamp(18px, 2.4vw, 40px) 30px;
-    animation: fadeIn .2s ease;
+  }
+  html.mobile-menu-open .topbar {
+    position: relative;
+    z-index: 1002;
+  }
+  html.mobile-menu-open .site-shell .hero-backdrop,
+  html.mobile-menu-open .site-shell .hero,
+  html.mobile-menu-open .site-shell .footer,
+  html.mobile-menu-open .site-shell .edge-label,
+  html.mobile-menu-open .carousel-controls,
+  html.mobile-menu-open .avatar-stack {
+    visibility: hidden;
   }
   .mobile-menu nav {
     display: flex;
@@ -150,7 +162,7 @@
     font-weight: 600;
     letter-spacing: -.02em;
     color: #c4c5c3;
-    opacity: 0;
+    opacity: 1;
     transform: translateY(8px);
     animation: mobileMenuLinkIn .42s ease forwards;
     transition: color .2s ease;
@@ -162,10 +174,9 @@
   .mobile-menu a:hover, .mobile-menu a.is-active { color: var(--accent); }
   .mobile-menu a.is-active { font-weight: 500; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 6px; }
   .mobile-menu a:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes mobileMenuLinkIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { transform: translateY(8px); }
+    to { transform: translateY(0); }
   }
 }
 

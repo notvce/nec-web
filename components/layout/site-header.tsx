@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import { createPortal } from "react-dom";
 
 import { BrandMark } from "@/components/home/brand-mark";
 import { SITE } from "@/lib/constants";
@@ -31,17 +32,21 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    const root = document.documentElement;
     if (mobileMenuOpen) {
-      document.documentElement.style.overflow = "hidden";
+      root.classList.add("mobile-menu-open");
+      root.style.overflow = "hidden";
       const focusTimer = window.requestAnimationFrame(() => {
         firstLinkRef.current?.focus();
       });
       return () => {
         window.cancelAnimationFrame(focusTimer);
-        document.documentElement.style.overflow = "";
+        root.classList.remove("mobile-menu-open");
+        root.style.overflow = "";
       };
     }
-    document.documentElement.style.overflow = "";
+    root.classList.remove("mobile-menu-open");
+    root.style.overflow = "";
     return undefined;
   }, [mobileMenuOpen]);
 
@@ -94,6 +99,7 @@ export function SiteHeader() {
   }, [mobileMenuOpen, closeMobileMenu]);
 
   return (
+    <>
     <header className="topbar site-header" data-nav>
       <Link className="brand" href="/" aria-label={`${SITE.name}, inicio`}>
         <BrandMark />
@@ -135,29 +141,57 @@ export function SiteHeader() {
           <span></span>
         </span>
       </button>
-      {mobileMenuOpen ? (
-        <div
-          className="mobile-menu"
-          id="mobile-navigation"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menú de navegación"
-        >
-          <nav aria-label="Navegación móvil">
-            {MOBILE_LINKS.map((link, index) => (
-              <Link
-                key={link.href}
-                ref={index === 0 ? firstLinkRef : index === MOBILE_LINKS.length - 1 ? lastLinkRef : undefined}
-                href={link.href}
-                className={isActive(link.href) ? "is-active" : ""}
-                onClick={closeMobileMenu}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      ) : null}
     </header>
+    <MobileMenuPortal
+      open={mobileMenuOpen}
+      pathname={pathname}
+      onClose={closeMobileMenu}
+      firstLinkRef={firstLinkRef}
+      lastLinkRef={lastLinkRef}
+    />
+    </>
+  );
+}
+
+function MobileMenuPortal({
+  open,
+  pathname,
+  onClose,
+  firstLinkRef,
+  lastLinkRef,
+}: {
+  open: boolean;
+  pathname: string;
+  onClose: () => void;
+  firstLinkRef: RefObject<HTMLAnchorElement | null>;
+  lastLinkRef: RefObject<HTMLAnchorElement | null>;
+}) {
+  const isActive = (path: string) => pathname === path;
+
+  if (!open || typeof document === "undefined") return null;
+
+  return createPortal(
+    <div
+      className="mobile-menu"
+      id="mobile-navigation"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menú de navegación"
+    >
+      <nav aria-label="Navegación móvil">
+        {MOBILE_LINKS.map((link, index) => (
+          <Link
+            key={link.href}
+            ref={index === 0 ? firstLinkRef : index === MOBILE_LINKS.length - 1 ? lastLinkRef : undefined}
+            href={link.href}
+            className={isActive(link.href) ? "is-active" : ""}
+            onClick={onClose}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+    </div>,
+    document.body,
   );
 }
