@@ -215,6 +215,8 @@ export const CONTACT_LIMITS = {
   message: 5000,
 } as const;
 
+export const GENERIC_PROJECT_DISCIPLINE = "Proyecto creativo";
+
 export function isContactDetailVisible(value: string): boolean {
   return value.trim().length > 0 && value !== "PENDIENTE";
 }
