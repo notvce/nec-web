@@ -3,7 +3,26 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import type { OfferingItem } from "@/lib/constants";
-import { isContactDetailVisible, TEAM_IMAGE } from "@/lib/constants";
+import { isContactDetailVisible, SITE, TEAM_IMAGE } from "@/lib/constants";
+
+export function TeamGroupPhoto() {
+  return (
+    <figure className="team-group-photo">
+      <Image
+        src={TEAM_IMAGE}
+        alt=""
+        width={1200}
+        height={750}
+        sizes="100vw"
+        quality={85}
+        className="team-group-image"
+      />
+      <figcaption className="team-group-caption meta-mono">
+        EQUIPO — {SITE.location}
+      </figcaption>
+    </figure>
+  );
+}
 
 export function PageHero({ title, lead }: { title: string; lead: string }) {
   return (
@@ -59,7 +78,8 @@ export function OfferingList({ items, label }: { items: readonly OfferingItem[];
   );
 }
 
-type TeamMember = {
+/** Listo para cuando existan datos reales de equipo (no renderizar sin miembros válidos). */
+export type TeamMember = {
   slice: 0 | 1 | 2;
   name: string;
   role: string;

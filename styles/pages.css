@@ -124,6 +124,15 @@
 }
 
 .team-section .section-intro { margin-bottom: 2.5rem; }
+.team-group-photo { margin: 0; width: 100%; }
+.team-group-image { display: block; width: 100%; height: auto; border-radius: 0; }
+.team-group-caption {
+  margin: 14px 0 0;
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  line-height: 1.4;
+}
 .team-portraits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

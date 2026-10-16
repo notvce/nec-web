@@ -7,7 +7,7 @@ import {
   PageClosing,
   PageHero,
   SectionIntro,
-  TeamPortraits,
+  TeamGroupPhoto,
 } from "@/components/pages/sub-page";
 import {
   EDGE_LABEL,
@@ -15,7 +15,6 @@ import {
   ESTUDIO_VALUES,
   PAGE_CLOSING_PHRASES,
   SITE,
-  TEAM_MEMBERS,
 } from "@/lib/constants";
 
 export const dynamic = "force-static";
@@ -61,7 +60,7 @@ export default function EstudioPage() {
               Un equipo multidisciplinario unido por la pasión de crear experiencias excepcionales.
             </p>
           </SectionIntro>
-          <TeamPortraits members={TEAM_MEMBERS} />
+          <TeamGroupPhoto />
         </section>
 
         <section className="content-section">

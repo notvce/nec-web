@@ -20,15 +20,6 @@ export const CAROUSEL_INTERVAL_MS = 2400;
 
 export const EDGE_LABEL = "ESTUDIO CREATIVO";
 
-export const TEAM_MEMBER_PLACEHOLDER_NAME = "Nombre Apellido";
-export const TEAM_MEMBER_PLACEHOLDER_ROLE = "Rol";
-
-export const TEAM_MEMBERS = [
-  { slice: 0 as const, name: TEAM_MEMBER_PLACEHOLDER_NAME, role: TEAM_MEMBER_PLACEHOLDER_ROLE },
-  { slice: 1 as const, name: TEAM_MEMBER_PLACEHOLDER_NAME, role: TEAM_MEMBER_PLACEHOLDER_ROLE },
-  { slice: 2 as const, name: TEAM_MEMBER_PLACEHOLDER_NAME, role: TEAM_MEMBER_PLACEHOLDER_ROLE },
-] as const;
-
 export type OfferingItem = {
   index: string;
   title: string;
