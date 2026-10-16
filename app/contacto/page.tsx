@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/pages/contact-form";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { isContactDetailVisible, SITE } from "@/lib/constants";
+import { EDGE_LABEL, isContactDetailVisible, SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
@@ -33,9 +33,7 @@ export default function ContactoPage() {
         <ContactForm />
       </main>
       <SiteFooter />
-      <span className="edge-label" aria-hidden="true">
-        ESTUDIO CREATIVO — 2025
-      </span>
+      <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </div>
   );
 }

@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { revealWithoutMotion } from "@/lib/animations/reveal-without-motion";
-import { CAROUSEL_INTERVAL_MS, HERO_IMAGES } from "@/lib/constants";
+import { HOME_INTRO_FINAL, setGsapFinalState } from "@/lib/animations/reveal-without-motion";
+import { CAROUSEL_INTERVAL_MS, EDGE_LABEL, HERO_IMAGES } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { scheduleIdleTask } from "@/lib/utils/schedule-idle";
 
@@ -29,7 +29,7 @@ export function HomeClient() {
     if (!node) return;
 
     if (reducedMotion) {
-      revealWithoutMotion(node);
+      void setGsapFinalState(node, HOME_INTRO_FINAL);
       return;
     }
 
@@ -100,6 +100,9 @@ export function HomeClient() {
           </Link>
         </h1>
         <div className="carousel-controls" role="group" aria-label="Imágenes de portada">
+          <span className="carousel-counter meta-mono meta-index" aria-live="polite">
+            {String(activeImage + 1).padStart(2, "0")} / {String(HERO_IMAGES.length).padStart(2, "0")}
+          </span>
           {HERO_IMAGES.map((image, index) => (
             <button
               key={image}
@@ -114,9 +117,7 @@ export function HomeClient() {
       </section>
 
       <SiteFooter />
-      <span className="edge-label" aria-hidden="true">
-        ESTUDIO CREATIVO — 2025
-      </span>
+      <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </main>
   );
 }

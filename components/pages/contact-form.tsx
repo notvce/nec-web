@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
-import { revealWithoutMotion } from "@/lib/animations/reveal-without-motion";
+import { CONTACT_FORM_FINAL, setGsapFinalState } from "@/lib/animations/reveal-without-motion";
 import { BUDGET_RANGES, PROJECT_TYPES } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { validateContactFields, type ContactFieldErrors } from "@/lib/validate-contact";
@@ -36,7 +36,7 @@ export function ContactForm() {
     if (!node) return;
 
     if (reducedMotion) {
-      revealWithoutMotion(node);
+      void setGsapFinalState(node, CONTACT_FORM_FINAL);
       return;
     }
 
