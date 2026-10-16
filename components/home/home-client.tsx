@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { revealWithoutMotion } from "@/lib/animations/reveal-without-motion";
+import { HOME_INTRO_FINAL, setGsapFinalState } from "@/lib/animations/reveal-without-motion";
 import { CAROUSEL_INTERVAL_MS, HERO_IMAGES } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { scheduleIdleTask } from "@/lib/utils/schedule-idle";
@@ -29,7 +29,7 @@ export function HomeClient() {
     if (!node) return;
 
     if (reducedMotion) {
-      revealWithoutMotion(node);
+      void setGsapFinalState(node, HOME_INTRO_FINAL);
       return;
     }
 

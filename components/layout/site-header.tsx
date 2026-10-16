@@ -14,7 +14,7 @@ export function SiteHeader() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="topbar" data-nav>
+    <header className="topbar site-header" data-nav>
       <Link className="brand" href="/" aria-label={`${SITE.name}, inicio`}>
         <BrandMark />
       </Link>
