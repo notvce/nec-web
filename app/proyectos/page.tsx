@@ -27,19 +27,18 @@ export default function ProyectosPage() {
       <main className="content-page proyectos-page">
         <PageHero
           title="Proyectos"
-          lead="Cada proyecto es una historia de transformación, donde la creatividad y la estrategia se unen para crear experiencias únicas."
+          lead="Historias de transformación donde creatividad y estrategia se encuentran."
         />
 
         <section className="content-section">
-          <SectionIntro title="Portafolio">
+          <SectionIntro title="Trabajo seleccionado">
             <p>
-              Trabajamos con marcas y equipos que buscan materializar visiones con diseño estratégico y ejecución
-              cuidada.
+              Casos donde el diseño estratégico materializa visiones con impacto medible.
             </p>
           </SectionIntro>
         </section>
 
-        <section className="content-section">
+        <section className="content-section content-section--flush">
           <CaseStudyList cases={PROJECT_CASES} />
         </section>
 

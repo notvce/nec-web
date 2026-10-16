@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { PageClosing, PageHero, ProcessTimeline, SectionIntro } from "@/components/pages/sub-page";
+import { OfferingList, PageClosing, PageHero, SectionIntro } from "@/components/pages/sub-page";
 import { EDGE_LABEL, IMAGINAMOS_STEPS, PAGE_CLOSING_PHRASES, SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
@@ -23,22 +23,21 @@ export default function ImaginamosPage() {
       <SiteHeader />
       <main className="content-page imaginamos-page">
         <PageHero
-          title="IMAGINAMOS"
+          title="Imaginamos"
           lead="Convertimos ideas en experiencias tangibles, marcas memorables y productos con visión creativa."
         />
 
         <section className="content-section">
-          <SectionIntro title="Proceso Creativo">
+          <SectionIntro title="Proceso creativo">
             <p>
-              Todo gran proyecto comienza con la imaginación. Transformamos conceptos abstractos en soluciones
-              concretas a través de un proceso colaborativo que combina investigación, creatividad y ejecución
-              impecable.
+              Todo gran proyecto comienza con la imaginación. Investigación, creatividad y ejecución en un solo
+              recorrido.
             </p>
           </SectionIntro>
         </section>
 
         <section className="content-section">
-          <ProcessTimeline items={IMAGINAMOS_STEPS} />
+          <OfferingList items={IMAGINAMOS_STEPS} label="Cómo trabajamos" />
         </section>
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.imaginamos} />

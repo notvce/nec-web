@@ -26,80 +26,128 @@ export const TEAM_MEMBERS = [
   { slice: 2 as const, name: "PENDIENTE", role: "PENDIENTE" },
 ] as const;
 
-export const ESTUDIO_SERVICES = [
-  "Estrategia de marca",
-  "Identidad visual",
-  "Diseño de producto digital",
-  "Experiencia de usuario",
-  "Desarrollo web",
-  "Consultoría creativa",
-] as const;
+export type OfferingItem = {
+  index: string;
+  title: string;
+  description: string;
+  deliverables: readonly string[];
+};
 
-export const FUTUROS_ITEMS = [
+export const ESTUDIO_SERVICES: readonly OfferingItem[] = [
+  {
+    index: "01",
+    title: "Estrategia de marca",
+    description:
+      "Definimos posicionamiento, narrativa y criterio para que cada decisión creativa tenga dirección.",
+    deliverables: ["PENDIENTE"],
+  },
+  {
+    index: "02",
+    title: "Identidad visual",
+    description: "Sistemas visuales coherentes que funcionan en todos los puntos de contacto.",
+    deliverables: ["PENDIENTE"],
+  },
+  {
+    index: "03",
+    title: "Diseño de producto digital",
+    description: "Interfaces y flujos pensados para claridad, rendimiento y evolución.",
+    deliverables: ["PENDIENTE"],
+  },
+  {
+    index: "04",
+    title: "Experiencia de usuario",
+    description: "Investigación y diseño centrado en personas, con foco en lo esencial.",
+    deliverables: ["PENDIENTE"],
+  },
+  {
+    index: "05",
+    title: "Desarrollo web",
+    description: "Implementación cuidada, accesible y lista para escalar.",
+    deliverables: ["PENDIENTE"],
+  },
+  {
+    index: "06",
+    title: "Consultoría creativa",
+    description: "Acompañamiento estratégico para equipos que quieren elevar su propuesta.",
+    deliverables: ["PENDIENTE"],
+  },
+];
+
+export const FUTUROS_ITEMS: readonly OfferingItem[] = [
   {
     index: "01",
     title: "Investigación de Tendencias",
     description:
       "Analizamos señales culturales, tecnológicas y sociales para identificar oportunidades antes de que se conviertan en mainstream.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "02",
     title: "Prototipado de Conceptos",
     description:
       "Materializamos ideas en prototipos tangibles que permiten explorar, testear y validar nuevas direcciones creativas.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "03",
     title: "Diseño Especulativo",
     description:
       "Creamos escenarios ficticios pero plausibles que desafían suposiciones y abren conversaciones sobre futuros posibles.",
+    deliverables: ["PENDIENTE"],
   },
-] as const;
+];
 
-export const IMAGINAMOS_STEPS = [
+export const IMAGINAMOS_STEPS: readonly OfferingItem[] = [
   {
     index: "01",
     title: "Descubrir",
     description:
       "Investigamos a fondo tu marca, audiencia y contexto para identificar oportunidades únicas y desafíos a resolver.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "02",
     title: "Idear",
     description:
       "Generamos múltiples conceptos creativos, explorando direcciones diversas antes de converger en la mejor solución.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "03",
     title: "Diseñar",
     description:
       "Refinamos cada detalle visual y funcional, asegurando coherencia, usabilidad y excelencia en la ejecución.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "04",
     title: "Implementar",
     description:
       "Llevamos el diseño a la realidad con desarrollo de calidad, asegurando que la visión se materialice fielmente.",
+    deliverables: ["PENDIENTE"],
   },
-] as const;
+];
 
-export const ESTUDIO_VALUES = [
+export const ESTUDIO_VALUES: readonly OfferingItem[] = [
   {
     index: "01",
     title: "Creatividad",
     description: "Exploramos ideas sin límites, buscando soluciones innovadoras para cada desafío.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "02",
     title: "Excelencia",
     description: "Cada detalle cuenta. Nos comprometemos con la calidad en todo lo que hacemos.",
+    deliverables: ["PENDIENTE"],
   },
   {
     index: "03",
     title: "Colaboración",
     description: "Trabajamos mano a mano con nuestros clientes, construyendo juntos el camino hacia el éxito.",
+    deliverables: ["PENDIENTE"],
   },
-] as const;
+];
 
 export const PROJECT_CASES = [
   {
@@ -108,6 +156,7 @@ export const PROJECT_CASES = [
     client: "PENDIENTE",
     year: "PENDIENTE",
     discipline: "PENDIENTE",
+    outcome: "PENDIENTE",
     image: HERO_IMAGES[0],
     layout: "full" as const,
   },
@@ -117,6 +166,7 @@ export const PROJECT_CASES = [
     client: "PENDIENTE",
     year: "PENDIENTE",
     discipline: "PENDIENTE",
+    outcome: "PENDIENTE",
     image: HERO_IMAGES[1],
     layout: "split" as const,
   },
@@ -126,16 +176,17 @@ export const PROJECT_CASES = [
     client: "PENDIENTE",
     year: "PENDIENTE",
     discipline: "PENDIENTE",
+    outcome: "PENDIENTE",
     image: HERO_IMAGES[2],
     layout: "full" as const,
   },
 ] as const;
 
 export const PAGE_CLOSING_PHRASES = {
-  estudio: "Diseñamos con criterio.",
-  futuros: "Anticipamos lo que sigue.",
-  imaginamos: "Las ideas piden forma.",
-  proyectos: "Cada trabajo deja huella.",
+  estudio: "Si buscas un equipo que piense contigo,",
+  futuros: "Si quieres explorar lo que viene,",
+  imaginamos: "Si tienes una idea que merece forma,",
+  proyectos: "Si tu próximo proyecto pide criterio,",
 } as const;
 
 export const PROJECT_TYPES = [

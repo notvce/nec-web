@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import {
-  EditorialList,
+  OfferingList,
   PageClosing,
   PageHero,
   SectionIntro,
-  ServicesList,
   TeamPortraits,
 } from "@/components/pages/sub-page";
 import {
@@ -39,42 +38,34 @@ export default function EstudioPage() {
       <SiteHeader />
       <main className="content-page estudio-page">
         <PageHero
-          title="Nuestro Estudio"
-          lead="Somos un estudio creativo independiente que combina estrategia, diseño y tecnología para crear experiencias memorables."
+          title="Estudio"
+          lead="Estrategia, diseño y tecnología en un solo equipo para experiencias que perduran."
         />
 
         <section className="content-section">
-          <div className="section-grid">
-            <SectionIntro title="Nuestro Enfoque">
-              <p>
-                Creemos que el diseño va más allá de lo visual. Es una herramienta para resolver problemas,
-                conectar personas y construir experiencias que perduran. Cada proyecto es una oportunidad para
-                explorar nuevas ideas y desafiar lo establecido.
-              </p>
-              <p>
-                Trabajamos de forma colaborativa con nuestros clientes, entendiendo sus necesidades y objetivos
-                para crear soluciones únicas que generan impacto real.
-              </p>
-            </SectionIntro>
-            <div className="section-aside">
-              <h3 className="section-aside-label meta-mono">Servicios</h3>
-              <ServicesList items={ESTUDIO_SERVICES} />
-            </div>
-          </div>
+          <SectionIntro title="Nuestro Enfoque">
+            <p>
+              Creemos que el diseño va más allá de lo visual. Es una herramienta para resolver problemas,
+              conectar personas y construir experiencias que perduran.
+            </p>
+          </SectionIntro>
+        </section>
+
+        <section className="content-section">
+          <OfferingList items={ESTUDIO_SERVICES} label="Qué hacemos" />
         </section>
 
         <section className="content-section team-section">
           <SectionIntro title="Equipo">
             <p>
-              Un equipo multidisciplinario de diseñadores, estrategas y desarrolladores unidos por la pasión de
-              crear experiencias excepcionales.
+              Un equipo multidisciplinario unido por la pasión de crear experiencias excepcionales.
             </p>
           </SectionIntro>
           <TeamPortraits members={TEAM_MEMBERS} />
         </section>
 
         <section className="content-section">
-          <EditorialList items={ESTUDIO_VALUES} />
+          <OfferingList items={ESTUDIO_VALUES} label="Valores" />
         </section>
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.estudio} />

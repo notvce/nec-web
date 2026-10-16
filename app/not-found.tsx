@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { EDGE_LABEL, HERO_IMAGES } from "@/lib/constants";
+import { EDGE_LABEL, TEAM_IMAGE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Página no encontrada",
@@ -14,23 +14,29 @@ export const metadata: Metadata = {
 export default function NotFoundPage() {
   return (
     <div className="site-wrapper not-found-wrapper">
-      <div className="not-found-backdrop" aria-hidden="true">
-        <Image src={HERO_IMAGES[0]} alt="" fill sizes="100vw" quality={60} className="not-found-backdrop-image" />
-      </div>
       <SiteHeader />
       <main className="content-page not-found-page">
-        <section className="page-hero">
-          <h1 className="error-code">404</h1>
-          <p className="lead">Página no encontrada</p>
-          <p className="error-description">
-            Lo sentimos, la página que buscas no existe o fue movida.
+        <section className="not-found-stage" aria-labelledby="not-found-title">
+          <p id="not-found-title" className="error-code meta-mono meta-index" aria-label="Error 404">
+            404
           </p>
-          <div className="error-actions">
-            <Link href="/" className="error-link primary">
+          <div className="not-found-brand-photo">
+            <Image
+              src={TEAM_IMAGE}
+              alt=""
+              fill
+              sizes="(max-width: 900px) 90vw, 480px"
+              quality={85}
+              className="not-found-brand-image"
+            />
+          </div>
+          <div className="not-found-copy">
+            <p className="not-found-lead">Página no encontrada</p>
+            <p className="error-description">
+              La ruta que buscas no existe o fue movida.
+            </p>
+            <Link href="/" className="error-link primary not-found-back">
               Volver al inicio <span aria-hidden="true">↗</span>
-            </Link>
-            <Link href="/contacto" className="error-link">
-              Contacto
             </Link>
           </div>
         </section>

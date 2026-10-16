@@ -17,9 +17,10 @@ export function CaseStudyList({ cases }: { cases: readonly ProjectCase[] }) {
               src={project.image}
               alt=""
               fill
-              sizes="(max-width: 900px) 100vw, 50vw"
+              sizes="(max-width: 900px) 100vw, 90vw"
               quality={80}
               className="case-study-image"
+              priority={project.slug === "caso-1"}
             />
           </div>
           <div className="case-study-content">
@@ -28,7 +29,8 @@ export function CaseStudyList({ cases }: { cases: readonly ProjectCase[] }) {
               <li>{project.year}</li>
               <li>{project.discipline}</li>
             </ul>
-            <h3 className="case-study-title">{project.title}</h3>
+            <p className="case-study-outcome">{project.outcome}</p>
+            <h2 className="case-study-title">{project.title}</h2>
           </div>
         </article>
       ))}

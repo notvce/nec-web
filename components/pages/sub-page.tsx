@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import type { OfferingItem } from "@/lib/constants";
 import { TEAM_IMAGE } from "@/lib/constants";
 
 export function PageHero({ title, lead }: { title: string; lead: string }) {
@@ -16,60 +17,40 @@ export function PageHero({ title, lead }: { title: string; lead: string }) {
 export function PageClosing({ phrase }: { phrase: string }) {
   return (
     <section className="page-closing" aria-label="Siguiente paso">
-      <p className="page-closing-phrase">{phrase}</p>
-      <Link href="/contacto" className="page-closing-link">
-        Hablemos <span aria-hidden="true">↗</span>
-      </Link>
+      <p className="page-closing-phrase">
+        {phrase}{" "}
+        <Link href="/contacto" className="page-closing-link">
+          hablemos
+          <span aria-hidden="true"> ↗</span>
+        </Link>
+      </p>
     </section>
   );
 }
 
-export type EditorialItem = {
-  index: string;
-  title: string;
-  description: string;
-};
-
-export function EditorialList({ items }: { items: readonly EditorialItem[] }) {
+export function OfferingList({ items, label }: { items: readonly OfferingItem[]; label?: string }) {
   return (
-    <ul className="editorial-list">
-      {items.map((item) => (
-        <li key={item.index} className="editorial-row">
-          <span className="editorial-index meta-mono">{item.index}</span>
-          <h3 className="editorial-title">{item.title}</h3>
-          <p className="editorial-desc">{item.description}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export function ProcessTimeline({ items }: { items: readonly EditorialItem[] }) {
-  return (
-    <ol className="process-timeline">
-      {items.map((item) => (
-        <li key={item.index} className="process-timeline-step">
-          <span className="process-timeline-index meta-mono">{item.index}</span>
-          <div className="process-timeline-body">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-export function ServicesList({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="estudio-services">
-      {items.map((item) => (
-        <li key={item}>
-          <span>{item}</span>
-          <span className="service-arrow meta-mono" aria-hidden="true">↗</span>
-        </li>
-      ))}
-    </ul>
+    <div className="offering-block">
+      {label ? <h2 className="offering-block-label meta-mono">{label}</h2> : null}
+      <ul className="offering-list">
+        {items.map((item) => (
+          <li key={item.index} className="offering-row">
+            <span className="offering-index meta-mono meta-index">{item.index}</span>
+            <div className="offering-main">
+              <h3 className="offering-title">{item.title}</h3>
+              <p className="offering-desc">{item.description}</p>
+            </div>
+            <ul className="offering-deliverables" aria-label={`Entregables de ${item.title}`}>
+              {item.deliverables.map((deliverable) => (
+                <li key={`${item.index}-${deliverable}`} className="meta-mono">
+                  {deliverable}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -97,7 +78,7 @@ export function TeamPortraits({ members }: { members: readonly TeamMember[] }) {
           </div>
           <figcaption>
             <span className="team-portrait-name">{member.name}</span>
-            <span className="team-portrait-role meta-mono">{member.role}</span>
+            <span className="team-portrait-role">{member.role}</span>
           </figcaption>
         </figure>
       ))}
