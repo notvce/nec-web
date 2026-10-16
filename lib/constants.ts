@@ -29,13 +29,21 @@ export const PROJECT_TYPES = [
 ] as const;
 
 export const BUDGET_RANGES = [
-  "< $2,000 USD",
-  "$2,000 - $5,000 USD",
-  "$5,000 - $10,000 USD",
-  "$10,000 - $25,000 USD",
-  "> $25,000 USD",
+  "Menos de $2.000.000 CLP",
+  "$2.000.000 – $5.000.000 CLP",
+  "$5.000.000 – $10.000.000 CLP",
+  "$10.000.000 – $25.000.000 CLP",
+  "Más de $25.000.000 CLP",
   "Por definir",
 ] as const;
 
-export const CONTACT_PHONE = "PENDIENTE";
-export const CONTACT_ADDRESS = "Santiago, Chile";
+export const CONTACT_LIMITS = {
+  name: 120,
+  company: 120,
+  email: 200,
+  message: 5000,
+} as const;
+
+export function isContactDetailVisible(value: string): boolean {
+  return value.trim().length > 0 && value !== "PENDIENTE";
+}

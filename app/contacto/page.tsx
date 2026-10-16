@@ -22,9 +22,8 @@ export default function ContactoPage() {
     <div className="site-wrapper">
       <SiteHeader />
       <main className="content-page contacto-main">
-        <section className="page-hero">
+        <section className="page-hero contacto-page-hero">
           <h1>Contacto</h1>
-          <p className="lead">Cuéntanos tu proyecto. Respondemos en 24–48 horas hábiles.</p>
         </section>
         <ContactForm />
       </main>
