@@ -20,10 +20,13 @@ export const CAROUSEL_INTERVAL_MS = 2400;
 
 export const EDGE_LABEL = "ESTUDIO CREATIVO";
 
+export const TEAM_MEMBER_PLACEHOLDER_NAME = "Nombre Apellido";
+export const TEAM_MEMBER_PLACEHOLDER_ROLE = "Rol";
+
 export const TEAM_MEMBERS = [
-  { slice: 0 as const, name: "PENDIENTE", role: "PENDIENTE" },
-  { slice: 1 as const, name: "PENDIENTE", role: "PENDIENTE" },
-  { slice: 2 as const, name: "PENDIENTE", role: "PENDIENTE" },
+  { slice: 0 as const, name: TEAM_MEMBER_PLACEHOLDER_NAME, role: TEAM_MEMBER_PLACEHOLDER_ROLE },
+  { slice: 1 as const, name: TEAM_MEMBER_PLACEHOLDER_NAME, role: TEAM_MEMBER_PLACEHOLDER_ROLE },
+  { slice: 2 as const, name: TEAM_MEMBER_PLACEHOLDER_NAME, role: TEAM_MEMBER_PLACEHOLDER_ROLE },
 ] as const;
 
 export type OfferingItem = {
@@ -152,32 +155,35 @@ export const ESTUDIO_VALUES: readonly OfferingItem[] = [
 export const PROJECT_CASES = [
   {
     slug: "caso-1",
+    index: "01",
     title: "PENDIENTE",
     client: "PENDIENTE",
     year: "PENDIENTE",
-    discipline: "PENDIENTE",
+    discipline: "Identidad",
     outcome: "PENDIENTE",
     image: HERO_IMAGES[0],
     layout: "full" as const,
   },
   {
     slug: "caso-2",
+    index: "02",
     title: "PENDIENTE",
     client: "PENDIENTE",
     year: "PENDIENTE",
-    discipline: "PENDIENTE",
+    discipline: "Web",
     outcome: "PENDIENTE",
     image: HERO_IMAGES[1],
     layout: "split" as const,
   },
   {
     slug: "caso-3",
+    index: "03",
     title: "PENDIENTE",
     client: "PENDIENTE",
     year: "PENDIENTE",
-    discipline: "PENDIENTE",
+    discipline: "Producto",
     outcome: "PENDIENTE",
-    image: HERO_IMAGES[2],
+    image: HERO_IMAGES[1],
     layout: "full" as const,
   },
 ] as const;
@@ -214,8 +220,6 @@ export const CONTACT_LIMITS = {
   email: 200,
   message: 5000,
 } as const;
-
-export const GENERIC_PROJECT_DISCIPLINE = "Proyecto creativo";
 
 export function isContactDetailVisible(value: string): boolean {
   return value.trim().length > 0 && value !== "PENDIENTE";
