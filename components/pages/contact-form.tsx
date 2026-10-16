@@ -15,11 +15,18 @@ function fieldErrorId(field: FieldKey) {
   return `contact-${field}-error`;
 }
 
+function RequiredMark() {
+  return (
+    <span className="form-required-mark" aria-hidden="true">
+      *
+    </span>
+  );
+}
+
 export function ContactForm() {
   const root = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
   const [status, setStatus] = useState<FormStatus>("idle");
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [submitError, setSubmitError] = useState("");
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -56,17 +63,6 @@ export function ContactForm() {
     };
   }, [reducedMotion]);
 
-  const toggleProjectType = (type: string) => {
-    setSelectedTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
-    );
-    setFieldErrors((prev) => {
-      const next = { ...prev };
-      delete next.projectTypes;
-      return next;
-    });
-  };
-
   const clearFieldError = (field: FieldKey) => {
     setFieldErrors((prev) => {
       if (!prev[field]) return prev;
@@ -87,7 +83,7 @@ export function ContactForm() {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       company: String(formData.get("company") ?? ""),
-      projectTypes: selectedTypes,
+      projectType: String(formData.get("projectType") ?? ""),
       budget: String(formData.get("budget") ?? ""),
       message: String(formData.get("message") ?? ""),
       _gotcha: String(formData.get("_gotcha") ?? ""),
@@ -126,7 +122,6 @@ export function ContactForm() {
 
       setStatus("success");
       form.reset();
-      setSelectedTypes([]);
       setDetailsOpen(false);
     } catch (error) {
       setStatus("error");
@@ -152,7 +147,7 @@ export function ContactForm() {
 
         <div className="form-field">
           <label htmlFor="contact-name" className="form-label">
-            Nombre
+            Nombre <RequiredMark />
           </label>
           <input
             type="text"
@@ -161,6 +156,7 @@ export function ContactForm() {
             className="form-input"
             autoComplete="name"
             disabled={pending}
+            aria-required="true"
             aria-invalid={Boolean(fieldErrors.name)}
             aria-describedby={fieldErrors.name ? fieldErrorId("name") : undefined}
             onChange={() => clearFieldError("name")}
@@ -174,7 +170,7 @@ export function ContactForm() {
 
         <div className="form-field">
           <label htmlFor="contact-email" className="form-label">
-            Email
+            Email <RequiredMark />
           </label>
           <input
             type="email"
@@ -183,6 +179,7 @@ export function ContactForm() {
             className="form-input"
             autoComplete="email"
             disabled={pending}
+            aria-required="true"
             aria-invalid={Boolean(fieldErrors.email)}
             aria-describedby={fieldErrors.email ? fieldErrorId("email") : undefined}
             onChange={() => clearFieldError("email")}
@@ -195,32 +192,32 @@ export function ContactForm() {
         </div>
 
         <div className="form-field">
-          <span className="form-label" id="contact-project-types-label">
-            Tipo de proyecto
-          </span>
-          <div
-            className="project-types-chips"
-            role="group"
-            aria-labelledby="contact-project-types-label"
-            aria-invalid={Boolean(fieldErrors.projectTypes)}
-            aria-describedby={fieldErrors.projectTypes ? fieldErrorId("projectTypes") : undefined}
+          <label htmlFor="contact-project-type" className="form-label">
+            Tipo de proyecto <RequiredMark />
+          </label>
+          <select
+            id="contact-project-type"
+            name="projectType"
+            className="form-select"
+            disabled={pending}
+            defaultValue=""
+            aria-required="true"
+            aria-invalid={Boolean(fieldErrors.projectType)}
+            aria-describedby={fieldErrors.projectType ? fieldErrorId("projectType") : undefined}
+            onChange={() => clearFieldError("projectType")}
           >
+            <option value="" disabled>
+              Selecciona una opción
+            </option>
             {PROJECT_TYPES.map((type) => (
-              <button
-                key={type}
-                type="button"
-                className={`project-chip ${selectedTypes.includes(type) ? "is-selected" : ""}`}
-                onClick={() => toggleProjectType(type)}
-                disabled={pending}
-                aria-pressed={selectedTypes.includes(type)}
-              >
+              <option key={type} value={type}>
                 {type}
-              </button>
+              </option>
             ))}
-          </div>
-          {fieldErrors.projectTypes ? (
-            <p id={fieldErrorId("projectTypes")} className="form-field-error" role="alert">
-              {fieldErrors.projectTypes}
+          </select>
+          {fieldErrors.projectType ? (
+            <p id={fieldErrorId("projectType")} className="form-field-error" role="alert">
+              {fieldErrors.projectType}
             </p>
           ) : null}
         </div>
@@ -286,7 +283,7 @@ export function ContactForm() {
 
         <div className="form-field">
           <label htmlFor="contact-message" className="form-label">
-            Mensaje
+            Mensaje <RequiredMark />
           </label>
           <textarea
             id="contact-message"
@@ -294,6 +291,7 @@ export function ContactForm() {
             className="form-textarea"
             rows={5}
             disabled={pending}
+            aria-required="true"
             aria-invalid={Boolean(fieldErrors.message)}
             aria-describedby={fieldErrors.message ? fieldErrorId("message") : undefined}
             onChange={() => clearFieldError("message")}
@@ -306,8 +304,9 @@ export function ContactForm() {
         </div>
 
         <div className="form-footer">
-          <button type="submit" className="form-submit-btn" disabled={pending}>
+          <button type="submit" className="form-submit-link" disabled={pending}>
             {pending ? "Enviando..." : "Enviar mensaje"}
+            <span aria-hidden="true">↗</span>
           </button>
 
           {status === "success" ? (

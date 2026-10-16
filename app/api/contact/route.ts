@@ -18,23 +18,35 @@ function getClientIp(request: NextRequest): string {
   return request.headers.get("x-real-ip") || "unknown";
 }
 
+function readProjectType(body: Record<string, unknown>): string | null {
+  if (typeof body.projectType === "string") {
+    return body.projectType;
+  }
+
+  if (Array.isArray(body.projectTypes) && body.projectTypes.length > 0) {
+    const first = body.projectTypes[0];
+    if (typeof first === "string") {
+      return first;
+    }
+  }
+
+  return null;
+}
+
 function parseContactBody(data: unknown): ContactInput | null {
   if (!data || typeof data !== "object") return null;
   const body = data as Record<string, unknown>;
 
+  const projectType = readProjectType(body);
+  if (projectType === null) return null;
 
   if (
     typeof body.name !== "string" ||
     typeof body.email !== "string" ||
     typeof body.company !== "string" ||
     typeof body.budget !== "string" ||
-    typeof body.message !== "string" ||
-    !Array.isArray(body.projectTypes)
+    typeof body.message !== "string"
   ) {
-    return null;
-  }
-
-  if (!body.projectTypes.every((item) => typeof item === "string")) {
     return null;
   }
 
@@ -42,7 +54,7 @@ function parseContactBody(data: unknown): ContactInput | null {
     name: body.name.slice(0, CONTACT_LIMITS.name),
     email: body.email.slice(0, CONTACT_LIMITS.email),
     company: body.company.slice(0, CONTACT_LIMITS.company),
-    projectTypes: body.projectTypes,
+    projectType: projectType.slice(0, 120),
     budget: body.budget,
     message: body.message.slice(0, CONTACT_LIMITS.message),
   };
@@ -82,7 +94,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Datos del formulario inválidos" }, { status: 400 });
     }
 
-    const { name, email, company, projectTypes, budget, message } = contact;
+    const { name, email, company, projectType, budget, message } = contact;
 
     if (resend && TO_EMAIL && FROM_EMAIL) {
       const safeName = escapeHtml(name);
@@ -90,14 +102,14 @@ export async function POST(request: NextRequest) {
       const safeCompany = escapeHtml(company);
       const safeBudget = escapeHtml(budget);
       const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
-      const safeTypes = projectTypes.map((type) => escapeHtml(type)).join(", ");
+      const safeProjectType = escapeHtml(projectType);
 
       const emailHtml = `
         <h2>Nuevo mensaje de contacto</h2>
         <p><strong>Nombre:</strong> ${safeName}</p>
         <p><strong>Email:</strong> ${safeEmail}</p>
         ${company ? `<p><strong>Empresa:</strong> ${safeCompany}</p>` : ""}
-        <p><strong>Tipo(s) de proyecto:</strong> ${safeTypes}</p>
+        <p><strong>Tipo de proyecto:</strong> ${safeProjectType}</p>
         ${budget ? `<p><strong>Presupuesto:</strong> ${safeBudget}</p>` : ""}
         <p><strong>Mensaje:</strong></p>
         <p>${safeMessage}</p>
@@ -106,7 +118,7 @@ export async function POST(request: NextRequest) {
       await resend.emails.send({
         from: FROM_EMAIL,
         to: TO_EMAIL,
-        subject: `Nuevo contacto: ${name.slice(0, 80)} - ${projectTypes[0]}`,
+        subject: `Nuevo contacto: ${name.slice(0, 80)} - ${projectType}`,
         html: emailHtml,
         replyTo: email,
       });
@@ -115,7 +127,7 @@ export async function POST(request: NextRequest) {
     } else {
       console.log("[Contact Form] Submission received (no email service configured):", {
         timestamp: new Date().toISOString(),
-        projectTypes,
+        projectType,
         hasBudget: !!budget,
         hasCompany: !!company,
         messageLength: message.length,

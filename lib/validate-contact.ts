@@ -4,14 +4,14 @@ const PROJECT_TYPE_SET = new Set<string>(PROJECT_TYPES);
 const BUDGET_SET = new Set<string>(BUDGET_RANGES);
 
 export type ContactFieldErrors = Partial<
-  Record<"name" | "email" | "company" | "projectTypes" | "budget" | "message", string>
+  Record<"name" | "email" | "company" | "projectType" | "budget" | "message", string>
 >;
 
 export interface ContactInput {
   name: string;
   email: string;
   company: string;
-  projectTypes: string[];
+  projectType: string;
   budget: string;
   message: string;
 }
@@ -25,6 +25,7 @@ export function validateContactFields(input: ContactInput): ContactFieldErrors {
   const company = input.company.trim();
   const message = input.message.trim();
   const budget = input.budget.trim();
+  const projectType = input.projectType.trim();
 
   if (!name) {
     errors.name = "Ingresa tu nombre.";
@@ -44,10 +45,10 @@ export function validateContactFields(input: ContactInput): ContactFieldErrors {
     errors.company = `Máximo ${CONTACT_LIMITS.company} caracteres.`;
   }
 
-  if (input.projectTypes.length === 0) {
-    errors.projectTypes = "Selecciona al menos un tipo de proyecto.";
-  } else if (!input.projectTypes.every((type) => PROJECT_TYPE_SET.has(type))) {
-    errors.projectTypes = "Tipo de proyecto no válido.";
+  if (!projectType) {
+    errors.projectType = "Selecciona un tipo de proyecto.";
+  } else if (!PROJECT_TYPE_SET.has(projectType)) {
+    errors.projectType = "Tipo de proyecto no válido.";
   }
 
   if (budget && !BUDGET_SET.has(budget)) {
