@@ -3,7 +3,7 @@ export const SITE = {
   name: "AXN Labs",
   title: "AXN Labs - Estudio creativo y digital",
   description: "Diseñamos lo que viene. Estudio creativo independiente.",
-  email: "",
+  email: "work@axnco.com",
   location: "Estudio independiente · Santiago, Chile",
 } as const;
 

@@ -6,7 +6,7 @@ Landing de una sola pantalla para un estudio creativo ficticio. Está hecha con 
 
 - El fondo del astronauta cubre el viewport con fundido cruzado cada 2,4 s. Opacidad activa `.68` con velo central reforzado.
 - El titular es **"IMAGINAMOS FUTUROS"**, con enlaces interactivos a `/imaginamos` y `/futuros`.
-- El correo del footer (`hola@orbita.studio`) navega a `/contacto`.
+- El correo del footer (`work@axnco.com`) navega a `/contacto`.
 - La navegación superior mantiene `mailto:` en Contacto y Hablemos.
 - `prefers-reduced-motion` desactiva rotación automática y transiciones.
 

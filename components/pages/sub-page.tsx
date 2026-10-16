@@ -47,10 +47,19 @@ export function PageClosing({ phrase }: { phrase: string }) {
   );
 }
 
-export function OfferingList({ items, label }: { items: readonly OfferingItem[]; label?: string }) {
+export function OfferingList({
+  items,
+  title,
+  metaLabel,
+}: {
+  items: readonly OfferingItem[];
+  title: string;
+  metaLabel?: string;
+}) {
   return (
     <div className="offering-block">
-      {label ? <h2 className="offering-block-label meta-mono">{label}</h2> : null}
+      {metaLabel ? <p className="offering-block-label meta-mono">{metaLabel}</p> : null}
+      <h2 className="offering-section-title">{title}</h2>
       <ul className="offering-list">
         {items.map((item) => {
           const visibleDeliverables = item.deliverables.filter(isContactDetailVisible);

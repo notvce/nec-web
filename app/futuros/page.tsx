@@ -37,7 +37,7 @@ export default function FuturosPage() {
         </section>
 
         <section className="content-section">
-          <OfferingList items={FUTUROS_ITEMS} />
+          <OfferingList items={FUTUROS_ITEMS} title="Ámbitos" />
         </section>
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.futuros} />

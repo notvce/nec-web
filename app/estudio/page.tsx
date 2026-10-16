@@ -51,7 +51,7 @@ export default function EstudioPage() {
         </section>
 
         <section className="content-section">
-          <OfferingList items={ESTUDIO_SERVICES} label="Qué hacemos" />
+          <OfferingList items={ESTUDIO_SERVICES} metaLabel="Qué hacemos" title="Servicios" />
         </section>
 
         <section className="content-section team-section">
@@ -64,7 +64,7 @@ export default function EstudioPage() {
         </section>
 
         <section className="content-section">
-          <OfferingList items={ESTUDIO_VALUES} label="Valores" />
+          <OfferingList items={ESTUDIO_VALUES} metaLabel="Valores" title="Principios" />
         </section>
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.estudio} />

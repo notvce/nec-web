@@ -13,7 +13,7 @@ export function TeamAvatar({ slice }: TeamAvatarProps) {
         src={TEAM_IMAGE}
         alt=""
         fill
-        sizes="40px"
+        sizes="32px"
         quality={75}
         className="avatar-image"
         style={{ left: `${-slice * 100}%` }}

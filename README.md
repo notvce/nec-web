@@ -35,7 +35,7 @@ El formulario de contacto soporta envío por email usando [Resend](https://resen
 ```env
 RESEND_API_KEY=re_xxxxx             # API key de Resend
 CONTACT_FROM_EMAIL=onboarding@resend.dev # Remitente verificado en Resend
-CONTACT_TO_EMAIL=email@domain.com   # Email destino para los mensajes
+CONTACT_TO_EMAIL=work@axnco.com      # Email destino para los mensajes
 ```
 
 Crea un archivo `.env.local` en la raíz del proyecto con estas variables.

@@ -37,7 +37,7 @@ export default function ImaginamosPage() {
         </section>
 
         <section className="content-section">
-          <OfferingList items={IMAGINAMOS_STEPS} label="Cómo trabajamos" />
+          <OfferingList items={IMAGINAMOS_STEPS} metaLabel="Cómo trabajamos" title="Proceso" />
         </section>
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.imaginamos} />

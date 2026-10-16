@@ -14,31 +14,27 @@ export const metadata: Metadata = {
 export default function NotFoundPage() {
   return (
     <div className="site-wrapper not-found-wrapper">
+      <div className="not-found-bg" aria-hidden="true">
+        <Image
+          src={TEAM_IMAGE}
+          alt=""
+          fill
+          sizes="100vw"
+          quality={60}
+          className="not-found-bg-image"
+        />
+      </div>
       <SiteHeader />
       <main className="content-page not-found-page">
         <section className="not-found-stage" aria-labelledby="not-found-title">
-          <p id="not-found-title" className="error-code meta-mono meta-index" aria-label="Error 404">
-            404
+          <p className="error-code meta-mono" aria-hidden="true">404</p>
+          <h1 id="not-found-title">Página no encontrada</h1>
+          <p className="error-description">
+            La ruta que buscas no existe o fue movida.
           </p>
-          <div className="not-found-brand-photo">
-            <Image
-              src={TEAM_IMAGE}
-              alt=""
-              fill
-              sizes="(max-width: 900px) 90vw, 480px"
-              quality={85}
-              className="not-found-brand-image"
-            />
-          </div>
-          <div className="not-found-copy">
-            <p className="not-found-lead">Página no encontrada</p>
-            <p className="error-description">
-              La ruta que buscas no existe o fue movida.
-            </p>
-            <Link href="/" className="error-link primary not-found-back">
-              Volver al inicio <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
+          <Link href="/" className="error-link primary not-found-back">
+            Volver al inicio <span aria-hidden="true">↗</span>
+          </Link>
         </section>
       </main>
       <SiteFooter />
