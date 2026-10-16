@@ -26,8 +26,8 @@
 .hero-word:focus-visible { color: var(--gold); outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
 .hero-word:active { color: #b8923f; }
 .carousel-controls { position: absolute; z-index: 4; left: 50%; bottom: 18px; display: flex; align-items: center; gap: 12px; transform: translateX(-50%); }
-.carousel-dot { box-sizing: border-box; width: 44px; height: 44px; padding: 18px 13px; border: 0; border-radius: 999px; background-color: rgba(242,241,238,.55); background-clip: content-box; cursor: pointer; transition: padding .25s ease, background-color .25s ease; }
-.carousel-dot.is-active { padding: 18px 4px; background-color: var(--accent); }
+.carousel-dot { box-sizing: border-box; width: 44px; height: 44px; padding: 18px; border: 0; border-radius: 999px; background-color: rgba(242,241,238,.55); background-clip: content-box; cursor: pointer; transition: padding .25s ease, background-color .25s ease; }
+.carousel-dot.is-active { padding: 18px 10px; background-color: var(--accent); }
 .carousel-dot:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
 .carousel-counter { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .footer { position: absolute; z-index: 5; left: clamp(18px, 2.4vw, 40px); right: clamp(18px, 2.4vw, 40px); bottom: 23px; display: flex; align-items: flex-end; justify-content: space-between; }

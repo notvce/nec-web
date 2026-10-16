@@ -100,6 +100,9 @@ export function HomeClient() {
           </Link>
         </h1>
         <div className="carousel-controls" role="group" aria-label="Imágenes de portada">
+          <span className="carousel-counter" aria-live="polite">
+            {String(activeImage + 1).padStart(2, "0")} / {String(HERO_IMAGES.length).padStart(2, "0")}
+          </span>
           {HERO_IMAGES.map((image, index) => (
             <button
               key={image}

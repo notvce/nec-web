@@ -38,7 +38,7 @@
   text-align: left;
 }
 
-.content-section { margin: 60px 0; }
+.content-section { margin: var(--space-8) 0; }
 
 .section-intro h2,
 .section-content h2 {
@@ -340,12 +340,22 @@
 .form-message-success { color: #a8d5a8; }
 .form-message-error { color: #e89191; }
 
+.not-found-wrapper { position: relative; isolation: isolate; }
+.not-found-backdrop { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.not-found-backdrop-image { object-fit: cover; object-position: center; filter: brightness(.22) saturate(.6); }
+.not-found-wrapper .topbar,
+.not-found-wrapper .content-page,
+.not-found-wrapper .footer,
+.not-found-wrapper .edge-label { position: relative; z-index: 1; }
 .not-found-page .page-hero { padding: 100px 0; }
-.error-code { font-size: clamp(80px, 15vw, 140px); font-weight: 800; margin: 0 0 1rem; letter-spacing: -.05em; color: var(--accent); }
-.error-description { margin: 0 auto 3rem; max-width: 40ch; font-size: 15px; line-height: 1.6; color: var(--muted); }
-.error-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-.error-link { padding: 14px 24px; font-size: 14px; font-weight: 600; border: 1px solid rgba(255,255,255,.12); transition: all .2s ease; }
-.error-link.primary { background: #1a1b1b; color: var(--paper); }
+.not-found-page .page-hero h1.error-code { grid-column: 1 / -1; }
+.not-found-page .error-code { font-size: clamp(80px, 15vw, 140px); font-weight: 800; margin: 0 0 1rem; letter-spacing: -.05em; color: var(--accent); }
+.not-found-page .error-description { grid-column: 1 / -1; margin: 0 0 3rem; max-width: 40ch; font-size: 15px; line-height: 1.6; color: var(--muted); text-align: left; }
+.error-actions { grid-column: 1 / -1; display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; }
+.error-link { padding: 16px 28px; font-size: 15px; font-weight: 600; border: 1px solid rgba(255,255,255,.12); transition: all .2s ease; }
+.error-link.primary { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.error-link.primary:hover,
+.error-link.primary:focus-visible { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 .error-link:hover, .error-link:focus-visible { color: var(--gold); border-color: rgba(212,168,83,.5); }
 .error-link:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
 .error-link span { display: inline-block; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
@@ -377,7 +387,7 @@
 @media (max-width: 600px) {
   .content-page { padding-top: 70px; padding-bottom: 50px; }
   .page-hero { padding-top: 30px; }
-  .content-section { margin: 40px 0; }
+  .content-section { margin: var(--space-7) 0; }
   .team-portraits { grid-template-columns: 1fr; }
   .not-found-page .page-hero { padding: 60px 0; }
   .contact-form { gap: 1.65rem; }
