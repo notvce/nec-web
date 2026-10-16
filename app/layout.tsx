@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { SITE } from "@/lib/constants";
+import { SITE, SITE_URL } from "@/lib/constants";
 import { dmSans } from "@/lib/fonts";
 import "@/styles/globals.css";
 
@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
   applicationName: SITE.name,
-  metadataBase: new URL(SITE.url),
+  metadataBase: new URL(SITE_URL),
   keywords: ["estudio creativo", "diseño", "branding", "UX/UI", "desarrollo web", "Chile"],
   authors: [{ name: SITE.name }],
   openGraph: {
     title: SITE.title,
     description: SITE.description,
-    url: SITE.url,
+    url: SITE_URL,
     siteName: SITE.name,
     locale: "es_CL",
     type: "website",
