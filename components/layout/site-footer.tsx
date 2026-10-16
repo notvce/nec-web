@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { TeamAvatar } from "@/components/home/team-avatar";
-import { SITE } from "@/lib/constants";
+import { isContactDetailVisible, SITE } from "@/lib/constants";
 
 export function SiteFooter() {
   return (
@@ -18,9 +18,15 @@ export function SiteFooter() {
           <span>hoy.</span>
         </p>
       </div>
-      <Link href="/contacto" className="email-link" data-reveal>
-        {SITE.email}
-      </Link>
+      {isContactDetailVisible(SITE.email) ? (
+        <Link href="/contacto" className="email-link" data-reveal>
+          {SITE.email}
+        </Link>
+      ) : (
+        <Link href="/contacto" className="email-link" data-reveal>
+          Hablemos
+        </Link>
+      )}
     </footer>
   );
 }

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { SITE } from "@/lib/constants";
+import { EditorialList, PageClosing, PageHero, SectionIntro } from "@/components/pages/sub-page";
+import { EDGE_LABEL, FUTUROS_ITEMS, PAGE_CLOSING_PHRASES, SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
@@ -22,64 +22,29 @@ export default function FuturosPage() {
     <div className="site-wrapper">
       <SiteHeader />
       <main className="content-page futuros-page">
-        <section className="page-hero">
-          <h1>FUTUROS</h1>
-          <p className="lead">
-            Exploramos escenarios, ideas y direcciones creativas que aún no existen, anticipando lo que viene.
-          </p>
-        </section>
+        <PageHero
+          title="FUTUROS"
+          lead="Exploramos escenarios, ideas y direcciones creativas que aún no existen, anticipando lo que viene."
+        />
 
         <section className="content-section">
-          <div className="section-content-centered">
-            <h2>Visión Prospectiva</h2>
+          <SectionIntro title="Visión Prospectiva">
             <p>
               En un mundo en constante cambio, el futuro no se predice: se construye. Exploramos tendencias
               emergentes, tecnologías disruptivas y nuevas formas de pensar para ayudar a nuestros clientes a
               anticiparse y liderar el cambio.
             </p>
-          </div>
+          </SectionIntro>
         </section>
 
         <section className="content-section">
-          <div className="futures-grid">
-            <div className="future-card">
-              <h3>Investigación de Tendencias</h3>
-              <p>
-                Analizamos señales culturales, tecnológicas y sociales para identificar oportunidades antes de
-                que se conviertan en mainstream.
-              </p>
-            </div>
-            <div className="future-card">
-              <h3>Prototipado de Conceptos</h3>
-              <p>
-                Materializamos ideas en prototipos tangibles que permiten explorar, testear y validar nuevas
-                direcciones creativas.
-              </p>
-            </div>
-            <div className="future-card">
-              <h3>Diseño Especulativo</h3>
-              <p>
-                Creamos escenarios ficticios pero plausibles que desafían suposiciones y abren conversaciones
-                sobre futuros posibles.
-              </p>
-            </div>
-          </div>
+          <EditorialList items={FUTUROS_ITEMS} />
         </section>
 
-        <section className="content-section cta-section">
-          <div className="cta-box">
-            <h2>¿Listo para explorar el futuro?</h2>
-            <p>Conversemos sobre cómo podemos anticipar y diseñar lo que viene.</p>
-            <Link href="/contacto" className="cta-button">
-              Iniciar conversación <span>↗</span>
-            </Link>
-          </div>
-        </section>
+        <PageClosing phrase={PAGE_CLOSING_PHRASES.futuros} />
       </main>
       <SiteFooter />
-      <span className="edge-label" aria-hidden="true">
-        ESTUDIO CREATIVO — 2025
-      </span>
+      <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { HOME_INTRO_FINAL, setGsapFinalState } from "@/lib/animations/reveal-without-motion";
-import { CAROUSEL_INTERVAL_MS, HERO_IMAGES } from "@/lib/constants";
+import { CAROUSEL_INTERVAL_MS, EDGE_LABEL, HERO_IMAGES } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { scheduleIdleTask } from "@/lib/utils/schedule-idle";
 
@@ -114,9 +114,7 @@ export function HomeClient() {
       </section>
 
       <SiteFooter />
-      <span className="edge-label" aria-hidden="true">
-        ESTUDIO CREATIVO — 2025
-      </span>
+      <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </main>
   );
 }

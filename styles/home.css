@@ -89,6 +89,7 @@
   .mobile-menu nav { display: flex; flex-direction: column; gap: 28px; }
   .mobile-menu a { font-size: 32px; font-weight: 600; letter-spacing: -.02em; color: #c4c5c3; transition: color .2s ease; }
   .mobile-menu a:hover, .mobile-menu a.is-active { color: var(--accent); }
+  .mobile-menu a:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 }
 

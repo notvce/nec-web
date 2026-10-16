@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { SITE, SITE_URL } from "@/lib/constants";
-import { dmSans } from "@/lib/fonts";
+import { dmSans, geistMono } from "@/lib/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={dmSans.variable}>
+    <html lang="es" className={`${dmSans.variable} ${geistMono.variable}`}>
       <body className={dmSans.className}>{children}</body>
     </html>
   );

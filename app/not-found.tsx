@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { EDGE_LABEL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Página no encontrada",
@@ -31,9 +32,7 @@ export default function NotFoundPage() {
         </section>
       </main>
       <SiteFooter />
-      <span className="edge-label" aria-hidden="true">
-        ESTUDIO CREATIVO — 2025
-      </span>
+      <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </div>
   );
 }
