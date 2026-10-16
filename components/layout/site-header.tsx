@@ -18,7 +18,8 @@ const MOBILE_LINKS = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerToggleRef = useRef<HTMLButtonElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const lastLinkRef = useRef<HTMLAnchorElement>(null);
   const isActive = (path: string) => pathname === path;
@@ -28,7 +29,14 @@ export function SiteHeader() {
   }, []);
 
   const toggleMobileMenu = useCallback(() => {
-    setMobileMenuOpen((open) => !open);
+    setMobileMenuOpen((open) => {
+      if (open) {
+        window.requestAnimationFrame(() => {
+          headerToggleRef.current?.focus();
+        });
+      }
+      return !open;
+    });
   }, []);
 
   useEffect(() => {
@@ -61,13 +69,15 @@ export function SiteHeader() {
       if (event.key === "Escape") {
         event.preventDefault();
         closeMobileMenu();
-        toggleRef.current?.focus();
+        window.requestAnimationFrame(() => {
+          headerToggleRef.current?.focus();
+        });
         return;
       }
 
       if (event.key !== "Tab") return;
 
-      const toggle = toggleRef.current;
+      const toggle = menuToggleRef.current;
       const first = firstLinkRef.current;
       const last = lastLinkRef.current;
       if (!toggle || !first || !last) return;
@@ -101,7 +111,13 @@ export function SiteHeader() {
   return (
     <>
     <header className="topbar site-header" data-nav>
-      <Link className="brand" href="/" aria-label={`${SITE.name}, inicio`}>
+      <Link
+        className="brand"
+        href="/"
+        aria-label={`${SITE.name}, inicio`}
+        aria-hidden={mobileMenuOpen}
+        tabIndex={mobileMenuOpen ? -1 : 0}
+      >
         <BrandMark />
       </Link>
       <nav className="main-nav" aria-label="Navegación principal">
@@ -127,12 +143,14 @@ export function SiteHeader() {
         </Link>
       </div>
       <button
-        ref={toggleRef}
+        ref={headerToggleRef}
         type="button"
         className="mobile-menu-toggle"
         aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
         aria-expanded={mobileMenuOpen}
         aria-controls="mobile-navigation"
+        aria-hidden={mobileMenuOpen}
+        tabIndex={mobileMenuOpen ? -1 : 0}
         onClick={toggleMobileMenu}
       >
         <span className="menu-icon">
@@ -146,8 +164,10 @@ export function SiteHeader() {
       open={mobileMenuOpen}
       pathname={pathname}
       onClose={closeMobileMenu}
+      onToggle={toggleMobileMenu}
       firstLinkRef={firstLinkRef}
       lastLinkRef={lastLinkRef}
+      menuToggleRef={menuToggleRef}
     />
     </>
   );
@@ -157,41 +177,67 @@ function MobileMenuPortal({
   open,
   pathname,
   onClose,
+  onToggle,
   firstLinkRef,
   lastLinkRef,
+  menuToggleRef,
 }: {
   open: boolean;
   pathname: string;
   onClose: () => void;
+  onToggle: () => void;
   firstLinkRef: RefObject<HTMLAnchorElement | null>;
   lastLinkRef: RefObject<HTMLAnchorElement | null>;
+  menuToggleRef: RefObject<HTMLButtonElement | null>;
 }) {
   const isActive = (path: string) => pathname === path;
 
   if (!open || typeof document === "undefined") return null;
 
   return createPortal(
-    <div
-      className="mobile-menu"
-      id="mobile-navigation"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Menú de navegación"
-    >
-      <nav aria-label="Navegación móvil">
-        {MOBILE_LINKS.map((link, index) => (
-          <Link
-            key={link.href}
-            ref={index === 0 ? firstLinkRef : index === MOBILE_LINKS.length - 1 ? lastLinkRef : undefined}
-            href={link.href}
-            className={isActive(link.href) ? "is-active" : ""}
-            onClick={onClose}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
-    </div>,
+    <>
+      <div className="mobile-menu-chrome">
+        <Link className="brand" href="/" aria-label={`${SITE.name}, inicio`} onClick={onClose}>
+          <BrandMark />
+        </Link>
+        <button
+          ref={menuToggleRef}
+          type="button"
+          className="mobile-menu-toggle"
+          aria-label="Cerrar menú"
+          aria-expanded={true}
+          aria-controls="mobile-navigation"
+          onClick={onToggle}
+        >
+          <span className="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+      <div
+        className="mobile-menu"
+        id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú de navegación"
+      >
+        <nav aria-label="Navegación móvil">
+          {MOBILE_LINKS.map((link, index) => (
+            <Link
+              key={link.href}
+              ref={index === 0 ? firstLinkRef : index === MOBILE_LINKS.length - 1 ? lastLinkRef : undefined}
+              href={link.href}
+              className={isActive(link.href) ? "is-active" : ""}
+              onClick={onClose}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </>,
     document.body,
   );
 }

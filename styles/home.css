@@ -83,6 +83,7 @@
 }
 @media (max-width: 600px) {
   .site-shell { height: 100svh; min-height: 580px; }
+  .mobile-menu-chrome { height: 62px; }
   .topbar { height: 62px; gap: 20px; }
   .brand-mark { width: 25px; }
   .main-nav { gap: 15px; font-size: 13px; }
@@ -122,10 +123,34 @@
 }
 .mobile-menu { display: none; }
 
+@media (max-width: 900px) {
+  .mobile-menu-chrome { height: 68px; }
+}
 @media (max-width: 768px) {
   .edge-label { display: none; }
   .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; }
   .main-nav, .nav-right { display: none; }
+  .mobile-menu-chrome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    height: 74px;
+    padding-inline: clamp(18px, 2.4vw, 40px);
+    box-sizing: border-box;
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+  }
+  .mobile-menu-chrome .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
   .mobile-menu {
     display: block;
     position: fixed;
@@ -135,9 +160,9 @@
     z-index: 1000;
     padding: 90px clamp(18px, 2.4vw, 40px) 30px;
   }
-  html.mobile-menu-open .topbar {
-    position: relative;
-    z-index: 1002;
+  html.mobile-menu-open .topbar .brand,
+  html.mobile-menu-open .topbar .mobile-menu-toggle {
+    visibility: hidden;
   }
   html.mobile-menu-open .site-shell .hero-backdrop,
   html.mobile-menu-open .site-shell .hero,
