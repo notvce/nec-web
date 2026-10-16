@@ -17,3 +17,25 @@ export const HERO_IMAGES = [
 export const TEAM_IMAGE = "/images/equipo-orbita.webp";
 
 export const CAROUSEL_INTERVAL_MS = 2400;
+
+export const PROJECT_TYPES = [
+  "Sitio web",
+  "E-commerce",
+  "Branding",
+  "UX/UI",
+  "App móvil",
+  "Marketing digital",
+  "Otro",
+] as const;
+
+export const BUDGET_RANGES = [
+  "< $2,000 USD",
+  "$2,000 - $5,000 USD",
+  "$5,000 - $10,000 USD",
+  "$10,000 - $25,000 USD",
+  "> $25,000 USD",
+  "Por definir",
+] as const;
+
+export const CONTACT_PHONE = "PENDIENTE";
+export const CONTACT_ADDRESS = "Santiago, Chile";

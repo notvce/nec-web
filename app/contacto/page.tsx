@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ContactPanel } from "@/components/pages/contact-panel";
+import { ContactForm } from "@/components/pages/contact-form";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SITE } from "@/lib/constants";
@@ -26,7 +26,7 @@ export default function ContactoPage() {
           <h1>Contacto</h1>
           <p className="lead">Cuéntanos tu proyecto. Respondemos en 24–48 horas hábiles.</p>
         </section>
-        <ContactPanel />
+        <ContactForm />
       </main>
       <SiteFooter />
       <span className="edge-label" aria-hidden="true">
