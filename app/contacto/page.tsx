@@ -1,12 +1,37 @@
+import type { Metadata } from "next";
+
 import { ContactPanel } from "@/components/pages/contact-panel";
-import { SubPage } from "@/components/pages/sub-page";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
+export const metadata: Metadata = {
+  title: `Contacto - ${SITE.name}`,
+  description: "Cuéntanos tu proyecto. Respondemos en 24–48 horas hábiles.",
+  openGraph: {
+    title: `Contacto - ${SITE.name}`,
+    description: "Cuéntanos tu proyecto. Respondemos en 24–48 horas hábiles.",
+    type: "website",
+  },
+};
+
 export default function ContactoPage() {
   return (
-    <SubPage title="CONTACTO" description="Cuéntanos tu proyecto. Respondemos en 24–48 horas hábiles.">
-      <ContactPanel />
-    </SubPage>
+    <div className="site-wrapper">
+      <SiteHeader />
+      <main className="content-page contacto-main">
+        <section className="page-hero">
+          <h1>Contacto</h1>
+          <p className="lead">Cuéntanos tu proyecto. Respondemos en 24–48 horas hábiles.</p>
+        </section>
+        <ContactPanel />
+      </main>
+      <SiteFooter />
+      <span className="edge-label" aria-hidden="true">
+        ESTUDIO CREATIVO — 2025
+      </span>
+    </div>
   );
 }
