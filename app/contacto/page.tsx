@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/pages/contact-form";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { SITE } from "@/lib/constants";
+import { isContactDetailVisible, SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
@@ -24,6 +24,11 @@ export default function ContactoPage() {
       <main className="content-page contacto-main">
         <section className="page-hero contacto-page-hero">
           <h1>Contacto</h1>
+          {isContactDetailVisible(SITE.email) ? (
+            <p className="contact-email-inline">
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            </p>
+          ) : null}
         </section>
         <ContactForm />
       </main>
