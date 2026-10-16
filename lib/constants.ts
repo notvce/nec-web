@@ -6,6 +6,8 @@ export const SITE = {
   location: "Estudio independiente · Santiago, Chile",
 } as const;
 
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://axntest.nuvak.dev";
+
 export const HERO_IMAGES = [
   "/images/astronauta-orbita.webp",
   "/images/astronauta-orbita-2.webp",

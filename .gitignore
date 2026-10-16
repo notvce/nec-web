@@ -35,3 +35,5 @@ Thumbs.db
 # IDE
 .idea/
 .vscode/
+capturas/
+take-screenshots.js

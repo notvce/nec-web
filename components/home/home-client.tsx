@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { BrandMark } from "@/components/home/brand-mark";
-import { TeamAvatar } from "@/components/home/team-avatar";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 import { revealWithoutMotion } from "@/lib/animations/reveal-without-motion";
-import { CAROUSEL_INTERVAL_MS, HERO_IMAGES, SITE } from "@/lib/constants";
+import { CAROUSEL_INTERVAL_MS, HERO_IMAGES } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { scheduleIdleTask } from "@/lib/utils/schedule-idle";
 
@@ -87,25 +87,7 @@ export function HomeClient() {
           />
         ))}
       </div>
-      <header className="topbar" data-nav>
-        <a className="brand" href="#inicio" aria-label={`${SITE.name}, inicio`}>
-          <BrandMark />
-        </a>
-        <nav className="main-nav" aria-label="Navegación principal">
-          <a href="#inicio">Inicio</a>
-          <a href="#estudio">Estudio</a>
-          <a href="#proyectos">Proyectos</a>
-          <a href={`mailto:${SITE.email}`}>Contacto</a>
-        </nav>
-        <div className="nav-right">
-          <a className="journal-link" href="#estudio">
-            Nuestro enfoque
-          </a>
-          <a className="start-link" href={`mailto:${SITE.email}`}>
-            Hablemos <span>↗</span>
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className="hero" aria-labelledby="hero-title">
         <span className="hero-project-anchor" id="proyectos" aria-hidden="true" />
@@ -131,23 +113,7 @@ export function HomeClient() {
         </div>
       </section>
 
-      <footer className="footer" id="estudio">
-        <div className="team-note" data-reveal>
-          <div className="avatar-stack">
-            <TeamAvatar slice={0} />
-            <TeamAvatar slice={1} />
-            <TeamAvatar slice={2} />
-          </div>
-          <p>
-            Diseñamos el futuro,
-            <br />
-            <span>hoy.</span>
-          </p>
-        </div>
-        <Link href="/contacto" className="email-link" data-reveal>
-          {SITE.email}
-        </Link>
-      </footer>
+      <SiteFooter />
       <span className="edge-label" aria-hidden="true">
         ESTUDIO CREATIVO — 2025
       </span>
