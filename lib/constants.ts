@@ -4,6 +4,7 @@ export const SITE = {
   description: "Diseñamos lo que viene. Estudio creativo independiente.",
   email: "hola@orbita.studio",
   location: "Estudio independiente · Santiago, Chile",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://nec-web.vercel.app",
 } as const;
 
 export const HERO_IMAGES = [
