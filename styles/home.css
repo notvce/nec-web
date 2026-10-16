@@ -59,7 +59,16 @@
 .avatar-image { width: 300% !important; max-width: none !important; height: 100% !important; object-fit: cover; }
 .team-note p { margin: 0; font-size: var(--text-meta); line-height: 1.5; color: #e4e5e2; }
 .team-note p span { color: #929594; }
-.email-link { color: #c9cac7; font-size: var(--text-meta); border-bottom: 1px solid #555957; padding-bottom: 8px; opacity: 0; }
+.email-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #c9cac7;
+  font-size: var(--text-meta);
+  border-bottom: 1px solid #555957;
+  padding-bottom: 8px;
+  opacity: 0;
+}
 .edge-label { position: absolute; right: clamp(18px, 2.4vw, 40px); top: 50%; transform: translateY(-50%) rotate(90deg) translateX(50%); transform-origin: right center; color: var(--muted); font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
 
 @media (min-width: 1500px) {

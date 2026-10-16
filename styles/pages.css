@@ -310,7 +310,18 @@
 .form-select:focus { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23f2f1ee' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
 
 .contact-optional-details { border: none; }
-.contact-optional-summary { list-style: none; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); padding: .25rem 0; transition: color .2s ease; }
+.contact-optional-summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0;
+  transition: color .2s ease;
+}
 .contact-optional-summary:hover { color: var(--paper); }
 .contact-optional-summary:focus-visible { color: var(--paper); outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
 .contact-optional-summary::marker, .contact-optional-summary::-webkit-details-marker { display: none; }

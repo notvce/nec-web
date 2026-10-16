@@ -19,9 +19,9 @@ export function SiteFooter() {
         </p>
       </div>
       {isContactDetailVisible(SITE.email) ? (
-        <Link href="/contacto" className="email-link" data-reveal>
+        <a href={`mailto:${SITE.email}`} className="email-link" data-reveal>
           {SITE.email}
-        </Link>
+        </a>
       ) : (
         <Link href="/contacto" className="email-link" data-reveal>
           Hablemos
