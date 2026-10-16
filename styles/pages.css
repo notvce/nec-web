@@ -109,28 +109,35 @@
 .contact-optional-summary::marker, .contact-optional-summary::-webkit-details-marker { display: none; }
 .contact-optional-fields { display: flex; flex-direction: column; gap: 1.75rem; padding-top: 1.25rem; }
 
-.form-footer { display: flex; flex-direction: column; gap: .85rem; margin-top: .75rem; }
+.form-footer { display: flex; flex-direction: column; gap: .85rem; margin-top: 1.75rem; padding-top: .25rem; }
 .form-submit-link {
-  align-self: flex-start;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 0 0 7px;
-  font-size: 15px;
-  font-weight: 600;
+  width: 100%;
+  min-height: 48px;
+  padding: 14px 22px;
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: -.01em;
   font-family: inherit;
   color: var(--paper);
-  background: none;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,.22);
+  background: rgba(250,80,63,.1);
+  border: 1px solid var(--accent);
   cursor: pointer;
-  transition: color .2s ease, border-color .2s ease;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
 }
-.form-submit-link span { color: var(--accent); transition: transform .2s ease, color .2s ease; }
-.form-submit-link:hover:not(:disabled), .form-submit-link:focus-visible { color: var(--gold); border-bottom-color: rgba(212,168,83,.55); outline: none; }
-.form-submit-link:hover:not(:disabled) span, .form-submit-link:focus-visible span { color: var(--gold); transform: translate(2px, -2px); }
-.form-submit-link:disabled { opacity: .45; cursor: not-allowed; border-bottom-color: rgba(255,255,255,.12); }
+.form-submit-link span { color: var(--accent); transition: color .25s ease, transform .25s ease; }
+.form-submit-link:hover:not(:disabled) { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.form-submit-link:hover:not(:disabled) span { color: var(--paper); transform: translate(2px, -2px); }
+.form-submit-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.form-submit-link:disabled { opacity: .55; cursor: not-allowed; background: rgba(250,80,63,.06); border-color: rgba(250,80,63,.35); color: rgba(242,241,238,.75); }
+.form-submit-link:disabled span { color: rgba(250,80,63,.55); }
+
+@media (min-width: 641px) {
+  .form-submit-link { width: auto; align-self: flex-start; justify-content: flex-start; min-width: 12.5rem; }
+}
 
 .form-message { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .form-message-success { color: #a8d5a8; }
