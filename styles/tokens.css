@@ -2,7 +2,9 @@
   --ink: #090a0a;
   --paper: #f2f1ee;
   --muted: #a3a5a3;
+  /* Acción, CTAs y estado activo en navegación */
   --accent: #fa503f;
+  /* Foco de teclado y realce en hover de enlaces */
   --gold: #d4a853;
   --danger: #e89191;
   --space-1: 8px;

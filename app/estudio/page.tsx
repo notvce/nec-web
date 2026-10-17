@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import {
@@ -14,22 +12,17 @@ import {
   ESTUDIO_SERVICES,
   ESTUDIO_VALUES,
   PAGE_CLOSING_PHRASES,
-  SITE,
 } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/page-metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
-  title: `Estudio - ${SITE.name}`,
+export const metadata = createPageMetadata({
+  title: "Estudio",
   description:
     "Estudio creativo independiente especializado en diseño estratégico, identidad visual y experiencias digitales.",
-  openGraph: {
-    title: `Estudio - ${SITE.name}`,
-    description:
-      "Estudio creativo independiente especializado en diseño estratégico, identidad visual y experiencias digitales.",
-    type: "website",
-  },
-};
+  path: "/estudio",
+});
 
 export default function EstudioPage() {
   return (
@@ -69,7 +62,7 @@ export default function EstudioPage() {
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.estudio} />
       </main>
-      <SiteFooter />
+      <SiteFooter variant="page" />
       <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </div>
   );

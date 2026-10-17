@@ -36,13 +36,45 @@ export function PageHero({ title, lead }: { title: string; lead: string }) {
 export function PageClosing({ phrase }: { phrase: string }) {
   return (
     <section className="page-closing" aria-label="Siguiente paso">
-      <p className="page-closing-phrase">
-        {phrase}{" "}
-        <Link href="/contacto" className="page-closing-link">
-          hablemos
-          <span aria-hidden="true"> ↗</span>
-        </Link>
-      </p>
+      <div className="page-closing-inner">
+        <p className="page-closing-phrase">
+          {phrase}{" "}
+          <Link href="/contacto" className="page-closing-link">
+            hablemos
+            <span aria-hidden="true"> ↗</span>
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function ProcessTimeline({ items }: { items: readonly OfferingItem[] }) {
+  return (
+    <div className="process-timeline">
+      <p className="offering-block-label meta-mono">Cómo trabajamos</p>
+      <h2 className="offering-section-title">Proceso</h2>
+      <ol className="process-timeline-list">
+        {items.map((item) => (
+          <li key={item.index} className="process-timeline-step">
+            <span className="process-timeline-index meta-mono">{item.index}</span>
+            <h3 className="process-timeline-title">{item.title}</h3>
+            <p className="process-timeline-desc">{item.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+export function FuturosSignal() {
+  return (
+    <section className="futuros-signal" aria-label="Señal prospectiva">
+      <div className="futuros-signal-band" aria-hidden="true" />
+      <blockquote className="futuros-signal-quote">
+        <p className="futuros-signal-display">Lo que aún no existe</p>
+        <p className="futuros-signal-muted">es donde empezamos a diseñar.</p>
+      </blockquote>
     </section>
   );
 }

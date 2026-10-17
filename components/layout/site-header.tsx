@@ -12,6 +12,8 @@ const MOBILE_LINKS = [
   { href: "/", label: "Inicio" },
   { href: "/estudio", label: "Estudio" },
   { href: "/proyectos", label: "Proyectos" },
+  { href: "/imaginamos", label: "Imaginamos" },
+  { href: "/futuros", label: "Futuros" },
   { href: "/contacto", label: "Contacto" },
 ] as const;
 

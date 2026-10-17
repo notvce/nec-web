@@ -1,22 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { EDGE_LABEL, TEAM_IMAGE } from "@/lib/constants";
-
-export const metadata: Metadata = {
-  title: "Página no encontrada",
-  description: "La página que buscas no existe.",
-};
+import { EDGE_LABEL, HERO_IMAGES } from "@/lib/constants";
 
 export default function NotFoundPage() {
   return (
     <div className="site-wrapper not-found-wrapper">
       <div className="not-found-bg" aria-hidden="true">
         <Image
-          src={TEAM_IMAGE}
+          src={HERO_IMAGES[2]}
           alt=""
           fill
           sizes="100vw"
@@ -24,6 +18,7 @@ export default function NotFoundPage() {
           className="not-found-bg-image"
         />
       </div>
+      <p className="not-found-watermark" aria-hidden="true">404</p>
       <SiteHeader />
       <main className="content-page not-found-page">
         <section className="not-found-stage" aria-labelledby="not-found-title">
@@ -37,7 +32,7 @@ export default function NotFoundPage() {
           </Link>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter variant="page" />
       <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </div>
   );
