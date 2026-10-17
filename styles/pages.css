@@ -120,7 +120,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 11px;
+  font-size: var(--text-meta);
   color: var(--muted);
   line-height: 1.45;
 }
@@ -153,7 +153,7 @@
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: #141515;
+  background: var(--surface);
 }
 .team-portrait-image {
   width: 300% !important;
@@ -208,7 +208,7 @@
 .page-closing-link:focus-visible { color: var(--gold); text-decoration-color: var(--gold); }
 .page-closing-link:hover span,
 .page-closing-link:focus-visible span { transform: translate(2px, -2px); }
-.page-closing-link:focus-visible { outline: 2px solid #d4a853; outline-offset: 4px; border-radius: 2px; }
+.page-closing-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
 
 .content-section--flush { margin-top: var(--space-6); }
 
@@ -220,7 +220,7 @@
   aspect-ratio: 16 / 10;
   min-height: 200px;
   overflow: hidden;
-  background: #141515;
+  background: var(--surface);
 }
 .case-study-image {
   object-fit: cover;
@@ -228,37 +228,40 @@
   transition: transform 600ms cubic-bezier(.2,.7,.2,1);
 }
 .case-study-media:hover .case-study-image { transform: scale(1.03); }
-.case-study-content { max-width: 72ch; }
-.case-study-meta {
+.case-study-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  width: 100%;
+}
+.case-study-name {
+  margin: 0;
+  flex: 1 1 16ch;
+  font-size: clamp(28px, 3.2vw, 32px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  color: var(--paper);
+  max-width: 28ch;
+}
+.case-study-name--placeholder { color: var(--muted); font-weight: 500; }
+.case-study-meta-row {
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: flex-end;
   gap: 8px 16px;
-  margin: 0 0 20px;
-  padding: 0;
-  font-size: 11px;
+  font-size: var(--text-meta);
+  text-transform: uppercase;
+  letter-spacing: .08em;
   color: var(--muted);
 }
-.case-study-index,
-.case-study-discipline { font-size: var(--text-meta); text-transform: uppercase; letter-spacing: .08em; }
-.case-study-outcome {
-  margin: 0 0 1rem;
-  font-size: clamp(22px, 3.2vw, 36px);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -.03em;
-  color: var(--paper);
-  max-width: 38ch;
-}
-.case-study-title {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: .02em;
-  color: var(--muted);
-}
+.case-study-index { font-variant-numeric: tabular-nums; }
 
-.cta-button { display: inline-block; padding: 16px 28px; background: #1a1b1b; border: 1px solid rgba(255,255,255,.12); font-size: 14px; font-weight: 600; color: var(--paper); transition: all .2s ease; }
+.cta-button { display: inline-block; padding: 16px 28px; background: var(--surface-2); border: 1px solid rgba(255,255,255,.12); font-size: 14px; font-weight: 600; color: var(--paper); transition: all .2s ease; }
 .cta-button span { margin-left: 10px; color: var(--accent); }
 
 .contacto-layout {
@@ -484,7 +487,7 @@
   font-weight: 700;
   letter-spacing: -.06em;
   line-height: .85;
-  color: var(--surface-2, #1a1b1b);
+  color: var(--surface-2);
   user-select: none;
   pointer-events: none;
 }
@@ -499,7 +502,7 @@
   transition: color .2s ease, border-color .2s ease;
 }
 .contact-email-inline a:hover { color: var(--paper); border-bottom-color: var(--gold); }
-.contact-email-inline a:focus-visible { color: var(--paper); border-bottom-color: var(--gold); outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.contact-email-inline a:focus-visible { color: var(--paper); border-bottom-color: var(--gold); outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .contacto-area { width: min(100%, 520px); margin: 0 auto 2.5rem; padding: 2.5rem 2rem; border: 1px solid rgba(255,255,255,.08); background: rgba(26,27,27,.72); text-align: center; }
 .contacto-email {
   display: inline-flex;
@@ -509,17 +512,17 @@
   font-size: clamp(20px, 3vw, 28px);
   font-weight: 600;
   color: var(--paper);
-  border-bottom: 1px solid #555957;
+  border-bottom: 1px solid var(--line);
   padding-bottom: 8px;
   transition: color .25s ease;
 }
 .contacto-email:hover, .contacto-email:focus-visible { color: var(--gold); }
-.contacto-email:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.contacto-email:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .contacto-meta { margin: 0 0 1.5rem; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.contacto-cta { display: inline-block; padding: 14px 24px; background: #1a1b1b; border: 1px solid rgba(255,255,255,.06); min-width: 160px; font-size: 14px; font-weight: 600; text-align: center; transition: border-color .2s ease, color .2s ease; }
+.contacto-cta { display: inline-block; padding: 14px 24px; background: var(--surface-2); border: 1px solid rgba(255,255,255,.06); min-width: 160px; font-size: 14px; font-weight: 600; text-align: center; transition: border-color .2s ease, color .2s ease; }
 .contacto-cta span { margin-left: 10px; color: var(--accent); }
 .contacto-cta:hover, .contacto-cta:focus-visible { color: var(--gold); border-color: rgba(212,168,83,.35); }
-.contacto-cta:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.contacto-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 
 .contact-form-section { margin: 0 auto; max-width: 640px; }
 .contact-form { display: flex; flex-direction: column; gap: 2rem; }
@@ -588,7 +591,7 @@
   transform: none;
 }
 .contact-optional-summary:hover { color: var(--paper); }
-.contact-optional-summary:focus-visible { color: var(--paper); outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.contact-optional-summary:focus-visible { color: var(--paper); outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .contact-optional-summary::marker, .contact-optional-summary::-webkit-details-marker { display: none; }
 .contact-optional-fields { display: flex; flex-direction: column; gap: 1.75rem; padding-top: 1.25rem; }
 
@@ -634,7 +637,7 @@
 }
 
 .form-message { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.form-message-success { color: #a8d5a8; }
+.form-message-success { color: var(--success); }
 .form-message-error { font-size: 14px; color: var(--danger); }
 .form-message-error a { color: var(--danger); text-decoration: underline; text-underline-offset: 3px; }
 .form-message-error a:hover,
@@ -696,7 +699,7 @@
   font-weight: 700;
   letter-spacing: -.06em;
   line-height: 1;
-  color: var(--surface, #141515);
+  color: var(--surface);
   pointer-events: none;
   user-select: none;
 }
@@ -734,12 +737,12 @@
 .error-link.primary:hover,
 .error-link.primary:focus-visible { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 .error-link:hover, .error-link:focus-visible { color: var(--gold); border-color: rgba(212,168,83,.5); }
-.error-link:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.error-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .error-link span { display: inline-block; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
 .error-link:hover span, .error-link:focus-visible span { transform: translate(2px, -2px); }
 
 .cta-button:hover { color: var(--gold); border-color: rgba(212,168,83,.5); }
-.cta-button:focus-visible { color: var(--gold); border-color: rgba(212,168,83,.5); outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.cta-button:focus-visible { color: var(--gold); border-color: rgba(212,168,83,.5); outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .cta-button span { display: inline-block; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
 .cta-button:hover span, .cta-button:focus-visible span { transform: translate(2px, -2px); }
 
@@ -755,16 +758,20 @@
     align-items: end;
   }
   .case-study--full .case-study-media,
-  .case-study--full .case-study-content { grid-column: 1 / -1; }
+  .case-study--full .case-study-footer { grid-column: 1 / -1; }
   .case-study--split .case-study-media {
     grid-column: 6 / 13;
     width: 100%;
     justify-self: end;
   }
-  .case-study--split .case-study-content {
+  .case-study--split .case-study-footer {
     grid-column: 1 / 6;
     align-self: end;
-    max-width: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .case-study--split .case-study-meta-row {
+    justify-content: flex-start;
   }
 }
 

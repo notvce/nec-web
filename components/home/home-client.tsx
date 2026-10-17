@@ -47,8 +47,8 @@ export function HomeClient() {
         const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
         intro
           .fromTo("[data-nav]", { y: -14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7 })
-          .fromTo("[data-backdrop]", { scale: 1.06, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.35 }, "-=0.35")
-          .fromTo("[data-title]", { y: 44, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.85 }, "-=0.62")
+          .fromTo("[data-backdrop]", { scale: 1.06 }, { scale: 1, duration: 1.1 }, "-=0.35")
+          .fromTo("[data-title]", { y: 36, autoAlpha: 0.001 }, { y: 0, autoAlpha: 1, duration: 0.6 }, "-=0.55")
           .fromTo("[data-reveal]", { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, stagger: 0.08 }, "-=0.48");
       }, node);
 
