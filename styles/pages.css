@@ -1,5 +1,7 @@
 .site-wrapper { min-height: 100svh; display: flex; flex-direction: column; position: relative; background: var(--ink); }
 .site-wrapper .topbar { opacity: 1; }
+.site-wrapper .team-note,
+.site-wrapper .email-link { opacity: 1; }
 
 .content-page {
   flex: 1;
@@ -312,7 +314,7 @@
 .form-input[aria-invalid="true"],
 .form-select[aria-invalid="true"],
 .form-textarea[aria-invalid="true"] { border-bottom-color: var(--accent); }
-.form-field-error { margin: 0; font-size: 14px; line-height: 1.4; color: #e89191; }
+.form-field-error { margin: 0; font-size: 14px; line-height: 1.4; color: var(--danger); }
 .form-input:disabled,
 .form-select:disabled,
 .form-textarea:disabled { opacity: .5; cursor: not-allowed; }
@@ -403,7 +405,41 @@
 
 .form-message { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .form-message-success { color: #a8d5a8; }
-.form-message-error { color: #e89191; }
+.form-message-error { font-size: 14px; color: var(--danger); }
+.form-message-error a { color: var(--danger); text-decoration: underline; text-underline-offset: 3px; }
+.form-message-error a:hover,
+.form-message-error a:focus-visible { color: var(--paper); }
+
+.contact-success-panel { display: flex; flex-direction: column; gap: 1rem; padding: 2rem 0; }
+.contact-success-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: var(--paper);
+}
+.contact-success-text { margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted); }
+.contact-success-reset {
+  align-self: flex-start;
+  margin-top: .5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(242, 241, 238, .45);
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.contact-success-reset:hover,
+.contact-success-reset:focus-visible { color: var(--gold); text-decoration-color: var(--gold); }
+.contact-success-reset:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 
 .not-found-wrapper { position: relative; isolation: isolate; overflow: hidden; }
 .not-found-bg {

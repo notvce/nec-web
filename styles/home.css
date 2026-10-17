@@ -11,7 +11,7 @@
 .main-nav a, .journal-link, .email-link { padding-block: 13px; transition: color .2s ease; }
 .main-nav a:hover, .journal-link:hover, .email-link:hover { color: white; }
 .main-nav a.is-active { color: var(--accent); font-weight: 500; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 6px; }
-.main-nav a:focus-visible, .journal-link:focus-visible, .email-link:focus-visible { outline: 2px solid #d4a853; outline-offset: 3px; border-radius: 2px; }
+.main-nav a:focus-visible, .journal-link:focus-visible, .email-link:focus-visible, .brand:focus-visible, .start-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .nav-right { margin-left: auto; gap: 24px; }
 .journal-link { color: #c4c5c3; }
 .start-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding-block: 12px; padding-inline: 16px; background: #1a1b1b; border: 1px solid rgba(255,255,255,.06); min-width: 120px; text-align: center; }
