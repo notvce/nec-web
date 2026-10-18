@@ -408,7 +408,8 @@
 .site-footer--page {
   position: relative;
   margin-top: auto;
-  padding: clamp(48px, 8vh, 80px) clamp(18px, 2.4vw, 40px) clamp(32px, 5vh, 56px);
+  padding-block: 48px;
+  padding-inline: clamp(18px, 2.4vw, 40px);
   border-top: 1px solid rgba(242, 241, 238, .08);
   background: var(--ink);
 }
@@ -420,7 +421,11 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(24px, 4vw, 48px);
-  padding-bottom: clamp(40px, 8vh, 72px);
+}
+.site-footer-bottom {
+  margin-top: clamp(28px, 4vh, 40px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
 }
 .site-footer-tagline {
   margin: 0;
@@ -480,17 +485,7 @@
 }
 .site-footer-social a:hover,
 .site-footer-social a:focus-visible { color: var(--paper); }
-.site-footer-copy { margin: 0; font-size: 13px; color: var(--muted); }
-.site-footer-wordmark {
-  margin: 0;
-  font-size: clamp(96px, 18vw, 280px);
-  font-weight: 700;
-  letter-spacing: -.06em;
-  line-height: .85;
-  color: var(--surface-2);
-  user-select: none;
-  pointer-events: none;
-}
+.site-footer-copy { margin: 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
 
 .contact-email-inline { margin: 0; font-size: 14px; line-height: 1.55; letter-spacing: .01em; }
 .contact-email-inline a {

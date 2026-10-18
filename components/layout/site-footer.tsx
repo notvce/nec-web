@@ -64,10 +64,11 @@ export function SiteFooter({ variant = "home" }: SiteFooterProps) {
             </div>
             <div className="site-footer-col site-footer-legal">
               <p className="site-footer-col-label meta-mono">Legal</p>
-              <p className="site-footer-copy">© 2026 AXN Labs</p>
             </div>
           </div>
-          <p className="site-footer-wordmark" aria-hidden="true">AXN</p>
+          <div className="site-footer-bottom">
+            <p className="site-footer-copy">© 2026 AXN Labs</p>
+          </div>
         </div>
       </footer>
     );
