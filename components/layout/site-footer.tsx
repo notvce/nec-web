@@ -62,9 +62,6 @@ export function SiteFooter({ variant = "home" }: SiteFooterProps) {
                 </ul>
               ) : null}
             </div>
-            <div className="site-footer-col site-footer-legal">
-              <p className="site-footer-col-label meta-mono">Legal</p>
-            </div>
           </div>
           <div className="site-footer-bottom">
             <p className="site-footer-copy">© 2026 AXN Labs</p>
