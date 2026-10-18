@@ -9,6 +9,13 @@ export const SITE = {
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://axntest.nuvak.dev";
 
+/** URLs vacías = enlace pendiente de confirmar (no mostrar en UI). */
+export const SOCIAL_LINKS: readonly { label: string; url: string }[] = [
+  { label: "Instagram", url: "" },
+  { label: "LinkedIn", url: "" },
+  { label: "Behance", url: "" },
+];
+
 export const HERO_IMAGES = [
   "/images/astronauta-orbita.webp",
   "/images/astronauta-orbita-2.webp",

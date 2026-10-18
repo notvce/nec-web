@@ -3,13 +3,20 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
 import { CONTACT_FORM_FINAL, setGsapFinalState } from "@/lib/animations/reveal-without-motion";
-import { BUDGET_RANGES, PROJECT_TYPES } from "@/lib/constants";
+import { BUDGET_RANGES, PROJECT_TYPES, SITE } from "@/lib/constants";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { validateContactFields, type ContactFieldErrors } from "@/lib/validate-contact";
 
 type FormStatus = "idle" | "pending" | "success" | "error";
 
 type FieldKey = keyof ContactFieldErrors;
+
+const SERVER_ERROR_MESSAGE = (
+  <>
+    No pudimos enviar tu mensaje. Escríbenos a{" "}
+    <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o intenta de nuevo.
+  </>
+);
 
 function fieldErrorId(field: FieldKey) {
   return `contact-${field}-error`;
@@ -25,10 +32,11 @@ function RequiredMark() {
 
 export function ContactForm() {
   const root = useRef<HTMLElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
   const reducedMotion = useReducedMotion();
   const [status, setStatus] = useState<FormStatus>("idle");
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
-  const [submitError, setSubmitError] = useState("");
+  const [showServerError, setShowServerError] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
 
   useEffect(() => {
@@ -63,6 +71,13 @@ export function ContactForm() {
     };
   }, [reducedMotion]);
 
+  useEffect(() => {
+    if (status !== "success") return;
+    const heading = successHeadingRef.current;
+    if (!heading) return;
+    heading.focus();
+  }, [status]);
+
   const clearFieldError = (field: FieldKey) => {
     setFieldErrors((prev) => {
       if (!prev[field]) return prev;
@@ -70,6 +85,13 @@ export function ContactForm() {
       delete next[field];
       return next;
     });
+  };
+
+  const resetForm = () => {
+    setStatus("idle");
+    setFieldErrors({});
+    setShowServerError(false);
+    setDetailsOpen(false);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -99,14 +121,14 @@ export function ContactForm() {
       if (errors.company || errors.budget) {
         setDetailsOpen(true);
       }
-      setSubmitError("");
+      setShowServerError(false);
       setStatus("idle");
       return;
     }
 
     setStatus("pending");
     setFieldErrors({});
-    setSubmitError("");
+    setShowServerError(false);
 
     try {
       const response = await fetch("/api/contact", {
@@ -116,8 +138,8 @@ export function ContactForm() {
       });
 
       if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(body?.error || "Error al enviar el formulario");
+        await response.json().catch(() => null);
+        throw new Error("server");
       }
 
       setStatus("success");
@@ -125,13 +147,38 @@ export function ContactForm() {
       setDetailsOpen(false);
     } catch (error) {
       setStatus("error");
-      setSubmitError(
-        error instanceof Error ? error.message : "Ocurrió un error inesperado. Intenta de nuevo."
-      );
+      if (error instanceof Error && error.message === "server") {
+        setShowServerError(true);
+      } else {
+        setShowServerError(true);
+      }
     }
   };
 
   const pending = status === "pending";
+
+  if (status === "success") {
+    return (
+      <section
+        className="contact-form-section contact-success-panel"
+        ref={root}
+        role="status"
+        aria-label="Confirmación de envío"
+      >
+        <h2
+          ref={successHeadingRef}
+          className="contact-success-title"
+          tabIndex={-1}
+        >
+          Mensaje recibido
+        </h2>
+        <p className="contact-success-text">Te respondemos en 24–48 horas hábiles.</p>
+        <button type="button" className="contact-success-reset" onClick={resetForm}>
+          Enviar otro mensaje
+        </button>
+      </section>
+    );
+  }
 
   return (
     <section className="contact-form-section" ref={root} aria-label="Formulario de contacto">
@@ -309,15 +356,9 @@ export function ContactForm() {
             <span aria-hidden="true">↗</span>
           </button>
 
-          {status === "success" ? (
-            <p className="form-message form-message-success" role="status">
-              Gracias. Recibimos tu mensaje y te responderemos pronto.
-            </p>
-          ) : null}
-
-          {status === "error" || submitError ? (
+          {showServerError ? (
             <p className="form-message form-message-error" role="alert">
-              {submitError || "Algo salió mal. Por favor, intenta de nuevo."}
+              {SERVER_ERROR_MESSAGE}
             </p>
           ) : null}
         </div>

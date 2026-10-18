@@ -1,24 +1,18 @@
-import type { Metadata } from "next";
-
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { CaseStudyList } from "@/components/pages/case-studies";
 import { PageClosing, PageHero, SectionIntro } from "@/components/pages/sub-page";
-import { EDGE_LABEL, PAGE_CLOSING_PHRASES, PROJECT_CASES, SITE } from "@/lib/constants";
+import { EDGE_LABEL, PAGE_CLOSING_PHRASES, PROJECT_CASES } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/page-metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
-  title: `Proyectos - ${SITE.name}`,
+export const metadata = createPageMetadata({
+  title: "Proyectos",
   description:
     "Explora nuestro portafolio de proyectos creativos y digitales que transforman ideas en experiencias.",
-  openGraph: {
-    title: `Proyectos - ${SITE.name}`,
-    description:
-      "Explora nuestro portafolio de proyectos creativos y digitales que transforman ideas en experiencias.",
-    type: "website",
-  },
-};
+  path: "/proyectos",
+});
 
 export default function ProyectosPage() {
   return (
@@ -44,7 +38,7 @@ export default function ProyectosPage() {
 
         <PageClosing phrase={PAGE_CLOSING_PHRASES.proyectos} />
       </main>
-      <SiteFooter />
+      <SiteFooter variant="page" />
       <span className="edge-label" aria-hidden="true">{EDGE_LABEL}</span>
     </div>
   );
