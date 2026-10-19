@@ -11,9 +11,9 @@
   "dependencies": {
     "geist": "^1.8.1",
     "gsap": "^3.14.1",
-    "next": "15.5.27",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "next": "15.5.28",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "resend": "^6.33.0"
   },
   "devDependencies": {
