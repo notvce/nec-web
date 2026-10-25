@@ -1,0 +1,12 @@
+.git
+.gitignore
+.next
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+README.md
+docs
+assets/source
+*.md
+.env*
+.DS_Store
